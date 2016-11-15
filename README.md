@@ -9,7 +9,7 @@
 1. Add an item to the database. You can either use the following curl command, or your favorite tool like Postman:
 
     `
-    curl -H "Content-Type: application/json" -X POST -d '{"lastname":"Posted"}' http://localhost:5000/api/applicant 
+    curl -H "Content-Type: application/json" -X POST -d '{"name":"Posted"}' http://localhost:5000/api/articles
     `
 
 ## Run the application in ASP.NET Core container and database container
@@ -24,10 +24,10 @@
 
 ## NOTE: To run a web container only
 
-1. If you haven't built it, run:
+1. If you haven't built the image, run:
 
-    `docker build -t ncarb:eesaRun . `
+    `docker build -t <tag>:<image name> . `
 
-1. Then run: 
+1. Then run this to create the container: 
 
-    `docker run -it -p 5000:5000 -v $(pwd):/eesa -t ncarb:eesa`
+    `docker run -it -p 5000:5000 -v $(pwd):/app -t ncarb:eesa`
