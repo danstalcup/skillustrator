@@ -8,9 +8,26 @@
 
     `docker-compose build`
 
-1. To start the containers, run: 
+1. To start the containers & the app, run: 
 
     `docker-compose up -d`
+
+It should be running on http://localhost:5000/api/articles now.
+
+1. If you need to log into the container (i.e. run migrations or troubleshoot), use this command. Use `docker ps` to list running containers and see the name:
+
+    `docker exec -it <container_name> bash`
+
+1. When you're finished developing, run this to *stop the app & containers*. Simply run the up command above to restart them:
+
+    `docker-compose stop`
+
+    *NOTES:* 
+    If you want to stop and destory the containers (and will also delete the database server & data), run `docker-compose down`. You can see what Docker images you have with `docker images`, and what *running* containers you have with `docker ps` (put -a on to see them all). 
+    
+    You might want to delete containers and images. Please refer to `docker rm` and `docker rmi` for how.
+
+1. To see the console output within the container, run `docker logs <container_name>`
 
 ### NOTE: To run a web container only
 
@@ -21,10 +38,6 @@
 1. Then run this to create the container: 
 
     `docker run -dt -p 5000:5000 -v $(pwd):/app -t msexcella:aspnetcore-dev-env`
-
-1. To log into the container:
-
-    `docker exec -it <container_name> bash`
 
 ### Add a database migration when model changes 
 
@@ -52,7 +65,7 @@ npm install -g angular-cli
 Run the following commands to install dependencies and create a server:
 
 ```bash
-cd Vending-Machine-ng2
+cd UI
 npm install
 ng serve
 ```
