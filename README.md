@@ -2,18 +2,6 @@
 
 ## API
 
-### Create the database 
-
-1. Run: 
-
-    `dotnet ef database update`
-
-1. Add an item to the database. You can either use the following curl command, or your favorite tool like Postman:
-
-    `
-    curl -H "Content-Type: application/json" -X POST -d '{"name":"Posted"}' http://localhost:5000/api/articles
-    `
-
 ### Run the application in ASP.NET Core container and database container
 
 1. If you haven't built yet, run: 
@@ -32,7 +20,23 @@
 
 1. Then run this to create the container: 
 
-    `docker run -it -p 5000:5000 -v $(pwd):/app -t ncarb:eesa`
+    `docker run -dt -p 5000:5000 -v $(pwd):/app -t msexcella:aspnetcore-dev-env`
+
+1. To log into the container:
+
+    `docker exec -it <container_name> bash`
+
+### Add a database migration when model changes 
+
+1. Run: 
+
+    `dotnet ef migrations add <name>`
+
+1. Add an item to the database. You can either use the following curl command, or your favorite tool like Postman:
+
+    `
+    curl -H "Content-Type: application/json" -X POST -d '{"name":"Posted"}' http://localhost:5000/api/articles
+    `
 
 ## UI
 
@@ -53,3 +57,13 @@ npm install
 ng serve
 ```
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+
+## Specs
+
+- Database
+    - Local: SQL Server localdb, Production: Azure SQL
+- API: 
+    - ASP.NET Core Web API in a Docker container
+    - Data layer: EF Core 1.0, repository pattern
+- UI: Angular 2
