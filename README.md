@@ -55,9 +55,9 @@ It should be running on http://localhost:5000/api/articles now.
 
 ### Manage the database via psql CLI
 
-1. Install Postgres or the client only
+1. Log into the postgres container (see instructions above)
 
-1. Run `psql -h localhost -p 5432 -d skillustrator -U postgres --password`
+1. Run `psql -h localhost -p 5432 -d skillustrator -U postgres --password`. Enter `password`.
 
 1. To list tables in the database type, `\dt`. You can do other database operations here. 
 
