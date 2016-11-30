@@ -9,13 +9,14 @@ FROM microsoft/dotnet:latest
 EXPOSE 5000/tcp
 ENV ASPNETCORE_URLS http://*:5000
 
-# copy files from current directory to target on image 
-COPY . /app 
+# copy files for building from current directory to target on image 
+COPY project.json /app/
 WORKDIR /app
 
-RUN ["dotnet", "restore"]
-RUN ["dotnet", "build"]
-ENTRYPOINT ["dotnet", "watch", "run"]
+#RUN ["dotnet", "restore"]
+#RUN ["dotnet", "build"]
+#ENTRYPOINT ["dotnet", "watch", "run"]
+
 
 # USAGE - build image, and expose ports, the current app folder: 
 # 		docker build -t mydemos:aspnetcorehelloworld .

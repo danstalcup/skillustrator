@@ -30,7 +30,8 @@ namespace ConsoleApplication
                 .AddJsonFormatters();
 
             services.AddEntityFrameworkNpgsql()
-                .AddDbContext<ArticlesContext>(options => options.UseNpgsql("User ID=postgres;Password=password;Server=postgres;Port=5432;Database=EesaService;Integrated Security=true;Pooling=true;"));
+                //.AddDbContext<ArticlesContext>(options => options.UseNpgsql("User ID=postgres;Password=password;Server=postgres;Port=5432;Database=skillustrator;Integrated Security=true;Pooling=true;"));
+                .AddDbContext<ArticlesContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IArticlesRepository, ArticlesRepository>();
         }

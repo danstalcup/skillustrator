@@ -12,6 +12,7 @@ services:
       - .:/app
     ports:
      - "5000:5000"
+    entrypoint: ["sh", "./go.sh"] 
     depends_on:
      - "postgres"
     networks:
