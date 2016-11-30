@@ -34,6 +34,7 @@ namespace ConsoleApplication.Articles
             return new ObjectResult(article);
         }
 
+        // TEST: curl -H "Content-Type: application/json" -X POST -d '{"lastname":"Posted"}' http://localhost:5000/api/applicant 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]Article article)
         {

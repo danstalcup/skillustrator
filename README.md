@@ -41,15 +41,27 @@ It should be running on http://localhost:5000/api/articles now.
 
 ### Add a database migration when model changes 
 
-1. Run: 
+1. Log into the app container (see instructions above)
 
-    `dotnet ef migrations add <name>`
+1. Run `dotnet ef migrations add <name>`
+
+1. Run `dotnet ef database update`
 
 1. Add an item to the database. You can either use the following curl command, or your favorite tool like Postman:
 
     `
     curl -H "Content-Type: application/json" -X POST -d '{"name":"Posted"}' http://localhost:5000/api/articles
     `
+
+### Manage the database via psql CLI
+
+1. Install Postgres or the client only
+
+1. Run `psql -h localhost -p 5432 -d skillustrator -U postgres --password`
+
+1. To list tables in the database type, `\dt`. You can do other database operations here. 
+
+1. To exit type, `\q`
 
 ## UI
 
