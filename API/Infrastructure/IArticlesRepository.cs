@@ -1,4 +1,4 @@
-using Articles.Entities;
+using ConsoleApplication.Entities;
 
 namespace ConsoleApplication.Infrastructure
 {

@@ -30,7 +30,7 @@ namespace ConsoleApplication
                 .AddJsonFormatters();
 
             services.AddEntityFrameworkNpgsql()
-                .AddDbContext<ArticlesContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+                .AddDbContext<SkillustratorContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IArticlesRepository, ArticlesRepository>();
         }
@@ -51,7 +51,7 @@ namespace ConsoleApplication
             // Create DB on startup
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                serviceScope.ServiceProvider.GetService<ArticlesContext>().Database.Migrate();
+                serviceScope.ServiceProvider.GetService<SkillustratorContext>().Database.Migrate();
             }
 
             startupLogger.LogTrace("Trace test output!");

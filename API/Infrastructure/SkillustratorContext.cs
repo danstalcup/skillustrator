@@ -1,13 +1,14 @@
-using Articles.Entities;
+using ConsoleApplication.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConsoleApplication.Infrastructure
 {
-  public class ArticlesContext : DbContext
+  public class SkillustratorContext : DbContext
   {
       public DbSet<Article> Articles { get; set; }
+      public DbSet<Person> People { get; set; }
 
-      public ArticlesContext(DbContextOptions options) : base(options)
+      public SkillustratorContext(DbContextOptions options) : base(options)
       {
       }
 

@@ -1,10 +1,10 @@
-using Articles.Entities;
+using ConsoleApplication.Entities;
 
 namespace ConsoleApplication.Infrastructure.Repositories
 {
     public class ArticlesRepository : BaseRepository<Article>, IArticlesRepository
     {
-        public ArticlesRepository(ArticlesContext context)
+        public ArticlesRepository(SkillustratorContext context)
             : base(context)
         { }
     }

@@ -12,9 +12,9 @@ namespace ConsoleApplication.Infrastructure
     public class BaseRepository<T> : IRepository<T>
             where T : class, IEntityBase, new()
     {
-        private ArticlesContext _context;
+        private SkillustratorContext _context;
 
-        public BaseRepository(ArticlesContext context)
+        public BaseRepository(SkillustratorContext context)
         {
             _context = context;
         }

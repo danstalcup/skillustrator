@@ -1,0 +1,1 @@
+psql -h localhost -p 5432 -d skillustrator -U postgres --password

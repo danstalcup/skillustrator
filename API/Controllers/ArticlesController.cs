@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Articles.Entities;
+using ConsoleApplication.Entities;
 using Microsoft.AspNetCore.Mvc;
 using ConsoleApplication.Infrastructure;
 using System.Threading.Tasks;
