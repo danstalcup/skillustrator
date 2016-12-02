@@ -8,9 +8,10 @@ using ConsoleApplication.Infrastructure;
 namespace app.Migrations
 {
     [DbContext(typeof(SkillustratorContext))]
-    partial class SkillustratorContextModelSnapshot : ModelSnapshot
+    [Migration("20161202205302_clearExistingTables")]
+    partial class clearExistingTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ChangeDetector.SkipDetectChanges", "true")

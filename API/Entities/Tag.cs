@@ -1,9 +1,9 @@
 namespace Skillustrator.Api.Entities
 {
-    public class Skill : EntityBase
+    public class Tag : BaseEntity
     {
         public string Name { get; set; }
 
-        public ICollection<Person> People { get; set; }
+        public ICollection<Skill> Skills { get; set; }
     }
 }

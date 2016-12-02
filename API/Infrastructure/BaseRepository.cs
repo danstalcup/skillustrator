@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using ConsoleApplication.Entities;
+using Skillustrator.Api.Entities;
 
-namespace ConsoleApplication.Infrastructure
+namespace Skillustrator.Api.Infrastructure
 {
     public class BaseRepository<T> : IRepository<T>
             where T : class, IEntityBase, new()

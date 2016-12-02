@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using ConsoleApplication.Entities;
+using Skillustrator.Api.Entities;
 using Microsoft.AspNetCore.Mvc;
-using ConsoleApplication.Infrastructure;
+using Skillustrator.Api.Infrastructure;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
-namespace ConsoleApplication.Articles
+namespace Skillustrator.Api.Controllers
 {
     [Route("/api/[controller]")]
     public class ArticlesController : Controller

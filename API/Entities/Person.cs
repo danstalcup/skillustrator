@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ConsoleApplication.Entities
+namespace Skillustrator.Api.Entities
 {
     public class Person : EntityBase
     {
