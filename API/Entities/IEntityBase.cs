@@ -1,4 +1,4 @@
-namespace Skillustrator.Api.Entities
+namespace ConsoleApplication.Entities
 {
     public interface IEntityBase
     {

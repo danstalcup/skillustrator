@@ -1,9 +1,7 @@
-namespace Skillustrator.Api.Entities
+namespace ConsoleApplication.Entities
 {
     public class Skill : EntityBase
     {
         public string Name { get; set; }
-
-        public ICollection<Person> People { get; set; }
     }
 }

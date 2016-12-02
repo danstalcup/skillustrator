@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Skillustrator.Api.Infrastructure
+namespace ConsoleApplication.Infrastructure
 {
     public interface IRepository<T> where T : class
     {
