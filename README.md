@@ -87,7 +87,8 @@ Navigate to `http://localhost:4200/`. The app will automatically reload if you c
 ## Specs
 
 - Database
-    - Local: SQL Server localdb, Production: Azure SQL
+    - Local: PostgreSQL, Production: Azure SQL
+    - DB Management: [PgAdmin](https://www.pgadmin.org/). When Postgres container is up and running you can connect with PgAdmin to localhost:5432. Alternatively, you can bash to the postgres container and use [psql](https://www.postgresql.org/docs/9.2/static/app-psql.html).
 - API: 
     - ASP.NET Core Web API in a Docker container
     - Data layer: EF Core 1.0, repository pattern
