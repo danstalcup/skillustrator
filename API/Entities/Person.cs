@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ConsoleApplication.Entities
+namespace Skillustrator.Api.Entities
 {
     public class Person : EntityBase
     {
@@ -8,6 +8,10 @@ namespace ConsoleApplication.Entities
 
         public string LastName { get; set; }
 
-        public ICollection<Skill> Skills { get; set; }
+        public ICollection<PersonSkill> Skills { get; set; }
+
+        public int? OrganizationId { get; set; }
+
+        public Organization Organization { get; set; }
     }
 }

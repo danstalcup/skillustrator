@@ -1,6 +1,6 @@
-using ConsoleApplication.Entities;
+using Skillustrator.Api.Entities;
 
-namespace ConsoleApplication.Infrastructure.Repositories
+namespace Skillustrator.Api.Infrastructure.Repositories
 {
     public class ArticlesRepository : BaseRepository<Article>, IArticlesRepository
     {

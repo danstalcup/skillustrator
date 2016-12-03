@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using ConsoleApplication.Infrastructure;
+using Skillustrator.Api.Infrastructure;
 
 namespace app.Migrations
 {

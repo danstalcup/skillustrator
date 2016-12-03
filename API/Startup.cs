@@ -1,5 +1,5 @@
-using ConsoleApplication.Infrastructure;
-using ConsoleApplication.Infrastructure.Repositories;
+using Skillustrator.Api.Infrastructure;
+using Skillustrator.Api.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

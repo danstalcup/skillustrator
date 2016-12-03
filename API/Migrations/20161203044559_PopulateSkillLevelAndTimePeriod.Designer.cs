@@ -8,9 +8,10 @@ using Skillustrator.Api.Infrastructure;
 namespace app.Migrations
 {
     [DbContext(typeof(SkillustratorContext))]
-    partial class SkillustratorContextModelSnapshot : ModelSnapshot
+    [Migration("20161203044559_PopulateSkillLevelAndTimePeriod")]
+    partial class PopulateSkillLevelAndTimePeriod
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1");
