@@ -33,6 +33,7 @@ namespace ConsoleApplication
                 .AddDbContext<SkillustratorContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IArticlesRepository, ArticlesRepository>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,11 +55,9 @@ namespace ConsoleApplication
                 serviceScope.ServiceProvider.GetService<SkillustratorContext>().Database.Migrate();
             }
 
-            startupLogger.LogTrace("Trace test output!");
-            startupLogger.LogDebug("Debug test output!");
-            startupLogger.LogInformation("Info test output!");
-            startupLogger.LogError("Error test output!");
-            startupLogger.LogCritical("Trace test output!");
+            // Not currently working
+            // var applicantSeeder = new TestDataSeeder();
+            // applicantSeeder.SeedAsync(app.ApplicationServices).Wait();
             
         }
     }

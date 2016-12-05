@@ -1,1 +1,1 @@
-curl -H "Content-Type: application/json" -X POST -d '{"Title":"Posted"}' http://localhost:5000/api/articles 
+curl -H "Content-Type: application/json" -X POST -d '{"LastName":"Doe", "FirstName":"Pat"}' http://localhost:5000/api/person 

@@ -5,6 +5,8 @@ namespace Skillustrator.Api.Infrastructure
 {
     public class SkillustratorContext : DbContext
     {
+        public DbSet<Person> People { get; set; }
+
         public SkillustratorContext(DbContextOptions options) : base(options)
         {
         }
