@@ -63,6 +63,8 @@ It should be running on http://localhost:5000/api/articles now.
 
 1. To exit type, `\q`
 
+**NOTE:** you can also you a GUI tool to manage the database like **pgAdmin**
+
 ## UI
 
 ### To run this Angular 2/Angular-CLI UI:
