@@ -4,6 +4,8 @@
 
 ### Run the application in ASP.NET Core container and database container
 
+**NOTE for Windows users**: you must have the new bash installed (comes with Windows 10 Anniversary Update)
+
 1. If you haven't built yet, run: 
 
     `docker-compose build`
@@ -95,3 +97,19 @@ Navigate to `http://localhost:4200/`. The app will automatically reload if you c
     - ASP.NET Core Web API in a Docker container
     - Data layer: EF Core 1.0, repository pattern
 - UI: Angular 2
+
+## Additional NOTES
+
+### To run containers individually 
+
+1. If you haven't built it, run:
+
+    `docker build -t msexcella:aspnetcore-dev-env . `
+
+1. Then run: 
+
+    ```
+    docker run -d --name postgres -e POSTGRES_PASSWORD=password postgres
+    
+    docker run -d -p 5000:5000 --link my-postgres:postgres msexcella:aspnetcore-dev-env 
+    ```
