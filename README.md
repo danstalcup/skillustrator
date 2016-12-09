@@ -83,8 +83,11 @@ Run the following commands to install dependencies and create a server:
 ```bash
 cd UI
 npm install
-ng serve
+npm start
 ```
+
+NOTE: "ng serve" is the standard start-up command for Angular CLI, however you must run "npm start" to ensure back-end API calls work properly (see https://github.com/angular/angular-cli#proxy-to-backend).
+
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 

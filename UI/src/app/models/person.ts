@@ -6,9 +6,9 @@ export class Person {
   firstName: string;
   lastName: string;
   skills: PersonSkill[];
-  organization: Organization[];
+  organization: Organization;
 
-  constructor(id: number, firstName: string, lastName: string, skills: PersonSkill[], organization: Organization[]) {
+  constructor(id: number, firstName: string, lastName: string, skills: PersonSkill[], organization: Organization) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;

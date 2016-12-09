@@ -1,1 +1,0 @@
-Remove this file once "services" folder starts getting populated (this is only used so the folder structure will appear on VSTS).

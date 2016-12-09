@@ -1,2 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'http://fonts.googleapis.com/icon?family=Material+Icons';
+
+/* Custom styles */
+.icon-align {
+    vertical-align: middle;
+    padding-bottom: 4px;
+}
+.icon-align-nav-left {
+      margin-right: 5px !important;
+}
+.icon-align-nav-right {
+      margin-left: 5px !important;
+}
+.brand-logo-padding {
+      padding-left: 15px !important;
+}
+
+/* materialize-css overrides */
+nav i.material-icons {
+      display: inline-block !important;
+}
+.collection .collection-item.avatar {
+      min-height: 0px !important;
+}
+.container .row {
+      margin: 0px !important;
+}

@@ -1,10 +1,31 @@
+<!--Nav dropdown-->
+<ul id="userActionsDropdown" class="dropdown-content">
+  <li>
+    <a href="javascript:void(0)"><i class="material-icons icon-align">view_list</i> SKILLS</a>
+  </li>
+  <li class="divider"></li>
+  <li>
+    <a href="javascript:void(0)"><i class="material-icons icon-align">exit_to_app</i> LOGOUT</a>
+  </li>
+  <li class="divider"></li>
+</ul>
+
+<!--Navbar-->
 <nav>
   <div class="nav-wrapper">
-    <a href="javascript:void(0)" class="brand-logo">Skillustrator</a>
+    <a href="javascript:void(0)" class="brand-logo brand-logo-padding">Skillustrator</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="javascript:void(0)">Link 1</a></li>
-      <li><a href="javascript:void(0)">Link 2</a></li>
-      <li><a href="javascript:void(0)">Link 3</a></li>
+      <li *ngIf="isUserLoggedIn">
+        <a class="dropdown-button" href="javascript:void(0)" data-activates="userActionsDropdown">
+          <i class="material-icons left icon-align-nav-left">person_pin</i>
+          {{currentUser?.firstName}} {{currentUser?.lastName}}<i class="material-icons right icon-align-nav-right">arrow_drop_down</i>
+        </a>
+      </li>
+      <li *ngIf="!isUserLoggedIn">
+        <a href="javascript:void(0)">
+          <i class="material-icons left icon-align-nav-left">person_pin</i>LOGIN
+        </a>
+      </li>
     </ul>
   </div>
 </nav>
