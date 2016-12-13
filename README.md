@@ -4,7 +4,7 @@
 
 ### Run the application in ASP.NET Core container and database container
 
-**NOTE for Windows users**: you must have the new bash installed (comes with Windows 10 Anniversary Update)
+**NOTE for Windows users**: you must have the new bash installed (comes with Windows 10 Anniversary Update), and you should use this bash. 
 
 1. If you haven't built yet, run: 
 
@@ -113,6 +113,6 @@ Navigate to `http://localhost:4200/`. The app will automatically reload if you c
 
     ```
     docker run -d --name postgres -e POSTGRES_PASSWORD=password postgres
-    
+
     docker run -d -p 5000:5000 --link my-postgres:postgres msexcella:aspnetcore-dev-env 
     ```

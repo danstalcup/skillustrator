@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Skillustrator.Api.Infrastructure;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using System.Collections.ObjectModel;
 
 namespace Skillustrator.Api.Controllers
 {
@@ -11,11 +12,14 @@ namespace Skillustrator.Api.Controllers
     public class PersonController : Controller
     {
         private readonly IPersonRepository _personRepository;
+
+        private readonly IRepository<Skill> _skillRepository;
         private readonly ILogger<PersonController> _logger; 
 
-        public PersonController(IPersonRepository personRepository, ILogger<PersonController> logger)
+        public PersonController(IPersonRepository personRepository, IRepository<Skill> skillRepository, ILogger<PersonController> logger)
         {
             _personRepository = personRepository;
+            _skillRepository = skillRepository;
             _logger = logger;
         }
 
@@ -45,12 +49,56 @@ namespace Skillustrator.Api.Controllers
                 return BadRequest(ModelState);
             }
 
+            var jsSkill = new Skill 
+            { 
+                Name = "Test Skill 1"
+            };
+
+            var personSkill = new PersonSkill 
+            {
+                Skill = jsSkill
+            };
+
             _personRepository.Add(new Person { 
                 LastName = person.LastName,
-                FirstName = person.FirstName });
+                FirstName = person.FirstName,
+                Skills = new Collection<PersonSkill> {
+                    personSkill
+                }    
+            });
+
             await _personRepository.SaveChangesAsync();
 
             _logger.LogDebug("Finished save");
+
+            return CreatedAtAction(nameof(Get), new { id = person.LastName }, person);
+        }
+
+        [HttpPost("/person/{id:int}/skill")]
+        public async Task<IActionResult> AddSkills([FromBody]int personId, string[] selectedSkills)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var person = await _personRepository.GetSingleAsync(personId);
+
+            if (person == null) 
+            {
+                return NotFound();
+            }
+
+            if (selectedSkills != null)
+            {
+                foreach (var skill in selectedSkills)
+                {
+                    var skillToAdd = await _skillRepository.GetSingleAsync(int.Parse(skill));
+                    person.RawSkills.Add(skillToAdd);
+                }
+            }
+
+            await _personRepository.SaveChangesAsync();
 
             return CreatedAtAction(nameof(Get), new { id = person.LastName }, person);
         }

@@ -10,7 +10,7 @@ EXPOSE 5000/tcp
 ENV ASPNETCORE_URLS http://*:5000
 
 # copy files for building from current directory to target on image 
-COPY project.json /app/
+COPY . /app/
 WORKDIR /app
 
 #RUN ["dotnet", "restore"]

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Skillustrator.Api.Entities;
 
 namespace ConsoleApplication
 {
@@ -34,6 +35,7 @@ namespace ConsoleApplication
 
             services.AddScoped<IArticlesRepository, ArticlesRepository>();
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IRepository<Skill>, BaseRepository<Skill>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,9 +57,10 @@ namespace ConsoleApplication
                 serviceScope.ServiceProvider.GetService<SkillustratorContext>().Database.Migrate();
             }
 
-            // Not currently working
-            // var applicantSeeder = new TestDataSeeder();
-            // applicantSeeder.SeedAsync(app.ApplicationServices).Wait();
+            // Not currently seeding anything, fix
+            var applicantSeeder = new TestDataSeeder();
+            applicantSeeder.SeedAsync(app.ApplicationServices).Wait();
+            startupLogger.LogInformation("Data seed completed.");
             
         }
     }

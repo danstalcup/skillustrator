@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Skillustrator.Api.Entities;
+using System.Collections.Generic;
 
 namespace Skillustrator.Api.Infrastructure
 {
@@ -25,6 +26,12 @@ namespace Skillustrator.Api.Infrastructure
 
         public async Task InsertData(SkillustratorContext db)
         {
+            var skills = new List<Skill>();
+            skills.Add (new Skill { Name = "CSS" });
+            skills.Add (new Skill { Name = "C#" });
+
+            db.Skills.AddRange(skills);
+
             var person = new Person { 
                         Id = new Random().Next(),
                         LastName = "TestLastName",

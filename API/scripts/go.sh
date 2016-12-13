@@ -1,5 +1,5 @@
 #!bin/bash
-set -e
+#set -e
 dotnet restore
 dotnet watch run
 # dotnet test test/WebTests/project.json
