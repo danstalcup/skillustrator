@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col s12 m12">
+    <h5><b>Manage Skills</b></h5>
+    <ul class="collection">
+      <li class="collection-item avatar" *ngFor="let skill of skills">
+        <i class="material-icons circle blue">insert_chart</i>
+        <span class="title"><b>{{ skill.name }}</b></span>
+        <p>Tags:</p>
+        <span class="secondary-content">
+          <a href="javascript:void(0)"><i class="material-icons">mode_edit</i></a>
+          <a href="javascript:void(0)"><i class="material-icons">delete</i></a>
+        </span>
+      </li>
+      <li class="collection-item avatar">  
+        <i class="material-icons circle blue">insert_chart</i>
+        <span class="title"><input #txtNewSkill [(ngModel)]="newSkillName"></span>
+        <p>Tags:</p>
+        <span class="secondary-content">
+          <a href="javascript:void(0)" (click)="addSkill(txtNewSkill.value)" ><i class="material-icons">add</i></a>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>

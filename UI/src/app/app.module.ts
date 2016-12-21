@@ -14,6 +14,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { PersonComponent } from './components/person/person.component';
 import { PersonSkillsComponent } from './components/person-skills/person-skills.component';
+import { SkillsComponent } from './components/skills/skills.component';
 import { AddPersonSkillComponent } from './components/add-person-skill/add-person-skill.component';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { AddPersonSkillComponent } from './components/add-person-skill/add-perso
     HomeComponent,
     PersonComponent,
     PersonSkillsComponent,
+    SkillsComponent,
     AddPersonSkillComponent
   ],
   imports: [
