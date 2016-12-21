@@ -29,14 +29,17 @@ namespace Skillustrator.Api.Infrastructure
             modelBuilder.Entity<Person>().Property(p => p.FirstName).IsRequired();
             modelBuilder.Entity<Person>().Property(p => p.LastName).IsRequired();
 
+            // modelBuilder.Entity<Person>()
+            //     HasMany<PersonSkill>(ps=> ps.PersonSkill);
+
             modelBuilder.Entity<PersonSkill>()
                 .HasOne<Person>(ps => ps.Person)
                 .WithMany(p => p.Skills)
                 .IsRequired();
-            modelBuilder.Entity<PersonSkill>()
-                .HasOne<Skill>(ps => ps.Skill)
-                .WithMany(s => s.People)
-                .IsRequired();
+            // modelBuilder.Entity<PersonSkill>()
+            //     .HasOne<Skill>(ps => ps.Skill)
+            //     .WithMany(s => s.People)
+            //     .IsRequired();
 
             modelBuilder.Entity<Skill>().Property(s => s.Name).IsRequired();
 

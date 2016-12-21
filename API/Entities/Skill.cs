@@ -6,8 +6,6 @@ namespace Skillustrator.Api.Entities
     {
         public string Name { get; set; }
 
-        public ICollection<PersonSkill> People { get; set; }
-
         public ICollection<SkillTag> Tags { get; set; }
     }
 }

@@ -2,5 +2,12 @@
   <h4>
     <b>{{person?.firstName}} {{person?.lastName}}</b>
   </h4>
+
+  <ul>
+    <li *ngFor="let skill of person?.skills">
+      {{ skill.name }}
+    </li>
+  </ul>
+
   <app-person-skills></app-person-skills>
 </div>

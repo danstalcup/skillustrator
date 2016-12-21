@@ -5,6 +5,7 @@ using Skillustrator.Api.Infrastructure;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Skillustrator.Api.Controllers
 {
@@ -29,13 +30,27 @@ namespace Skillustrator.Api.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
-            var person = await _personRepository.GetSingleAsync(id);
+            var person = await _personRepository.GetPersonWithSkills(id);
+
             if (person == null)
             {
                 return NotFound(); // This makes it return 404; otherwise it will return a 204 (no content) 
             }
 
-            return new ObjectResult(person);
+            var skills = new Collection<Skill>();
+
+            foreach (var personSkill in person.Skills) {
+                skills.Add(personSkill.Skill);
+            }
+
+            var personViewModel = new PersonViewModel {
+                Id = id, 
+                LastName = person.LastName,
+                FirstName = person.FirstName,
+                Skills = skills
+            };
+
+            return new ObjectResult(personViewModel);
         }
 
         // TEST: curl -H "Content-Type: application/json" -X POST -d '{"lastname":"Posted"}' http://localhost:5000/api/applicant 
@@ -74,29 +89,33 @@ namespace Skillustrator.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = person.LastName }, person);
         }
 
-        [HttpPost("/person/{id:int}/skill")]
-        public async Task<IActionResult> AddSkills([FromBody]int personId, string[] selectedSkills)
+        [HttpGet("{personId:int}/addskill/{skillId:int}")]
+        public async Task<IActionResult> AddSkills(int personId, int skillId)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var person = await _personRepository.GetSingleAsync(personId);
+            var person = await _personRepository.GetPersonWithSkills(personId);
 
             if (person == null) 
             {
                 return NotFound();
             }
 
-            if (selectedSkills != null)
+            var skillToAdd = await _skillRepository.GetSingleAsync(skillId);
+            var personSkill = new PersonSkill 
+            { 
+                Skill = skillToAdd,
+                Person = person 
+            };
+
+            if (person.Skills == null) 
             {
-                foreach (var skill in selectedSkills)
-                {
-                    var skillToAdd = await _skillRepository.GetSingleAsync(int.Parse(skill));
-                    person.RawSkills.Add(skillToAdd);
-                }
+                person.Skills = new Collection<PersonSkill>();
             }
+            person.Skills.Add(personSkill);
 
             await _personRepository.SaveChangesAsync();
 
