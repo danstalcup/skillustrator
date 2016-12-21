@@ -1,9 +1,9 @@
-<div class="modal" #addPersonModal>
+<div class="modal bottom-sheet" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
   <div class="modal-content">
     <h4>Add Skill</h4>
     <p>A bunch of text</p>
   </div>
   <div class="modal-footer">
-    <a href="javascript:void(0)" class=" modal-action modal-close waves-effect waves-green btn-flat">Add</a>
+    <a href="javascript:void(0)" class="waves-effect waves-green btn-flat" (click)="closeModal()">Add</a>
   </div>
 </div>

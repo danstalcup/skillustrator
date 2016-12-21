@@ -20,10 +20,7 @@ export class SkillsComponent implements OnInit {
 
   addSkill() {
     let newSkill = new Skill(this.newSkillName);
-    this.skillsService.create(newSkill).subscribe(skill => 
-      this.skills.push(skill);
-      this.newSkillName = "";
-    );
-    
+    this.skillsService.create(newSkill).subscribe(skill => this.skills.push(skill));
+    this.newSkillName = '';
   }
 }

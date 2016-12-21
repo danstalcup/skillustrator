@@ -1,21 +1,23 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-
-declare var $: JQueryStatic;
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
   selector: 'app-add-person-skill',
   templateUrl: './add-person-skill.component.html',
   styleUrls: ['./add-person-skill.component.css']
 })
-export class AddPersonSkillComponent implements OnInit, AfterViewInit {
-  @ViewChild('addPersonModal') modalEl: ElementRef;
+export class AddPersonSkillComponent implements OnInit {
+  modalActions = new EventEmitter<string|MaterializeAction>();
 
   constructor() { }
 
   ngOnInit() { }
 
-  ngAfterViewInit() {
-    $(this.modalEl.nativeElement).modal();
+  openModal() {
+    this.modalActions.emit({action: 'modal', params: ['open']});
+  }
+  closeModal() {
+    this.modalActions.emit({action: 'modal', params: ['close']});
   }
 
 }

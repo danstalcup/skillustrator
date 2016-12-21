@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Person } from '../../models/person';
 import { PersonService } from '../../services/person.service';
@@ -9,9 +9,9 @@ import { PersonService } from '../../services/person.service';
   styleUrls: ['./person.component.css']
 })
 export class PersonComponent implements OnInit {
+  @ViewChild('skillsModal') skillsModalComponent;
   personId: number;
   person: Person;
-  showModal: boolean;
 
   constructor(private personService: PersonService) { }
 
@@ -21,6 +21,6 @@ export class PersonComponent implements OnInit {
   }
 
   addSkill(): void {
-    this.showModal = true;
+    this.skillsModalComponent.openModal();
   }
 }

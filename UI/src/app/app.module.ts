@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 // Internal imports
+import { MaterializeDirective } from 'angular2-materialize';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpService } from './services/http.service';
@@ -19,6 +20,7 @@ import { AddPersonSkillComponent } from './components/add-person-skill/add-perso
 
 @NgModule({
   declarations: [
+    MaterializeDirective,
     AppComponent,
     NavbarComponent,
     HomeComponent,
