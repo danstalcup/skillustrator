@@ -10,8 +10,6 @@ namespace Skillustrator.Api.Entities
 
         public ICollection<PersonSkill> Skills { get; set; }
 
-        public ICollection<Skill> RawSkills { get; set; }
-
         public int? OrganizationId { get; set; }
 
         public Organization Organization { get; set; }

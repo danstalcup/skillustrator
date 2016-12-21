@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Skillustrator.Api.Entities;
+using Newtonsoft.Json;
 
 namespace ConsoleApplication
 {
@@ -28,7 +29,7 @@ namespace ConsoleApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvcCore()
-                .AddJsonFormatters();
+                .AddJsonFormatters(o=> o.PreserveReferencesHandling = PreserveReferencesHandling.Objects);
 
             services.AddEntityFrameworkNpgsql()
                 .AddDbContext<SkillustratorContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
