@@ -11,11 +11,16 @@ import { PersonService } from '../../services/person.service';
 export class PersonComponent implements OnInit {
   personId: number;
   person: Person;
+  showModal: boolean;
 
   constructor(private personService: PersonService) { }
 
   ngOnInit() {
     this.personId = 1;
     this.personService.getById(this.personId).subscribe(person => this.person = person);
+  }
+
+  addSkill(): void {
+    this.showModal = true;
   }
 }

@@ -17,6 +17,12 @@
 }
 
 /* materialize-css overrides */
+.btn, .btn-large, .btn-flat {
+      padding: 0 1rem !important;
+}
+i.left {
+      margin-right: 5px !important;
+}
 nav i.material-icons {
       display: inline-block !important;
 }
