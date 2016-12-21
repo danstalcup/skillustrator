@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Person } from '../../models/person';
 import { PersonService } from '../../services/person.service';
@@ -12,10 +13,15 @@ export class PersonComponent implements OnInit {
   personId: number;
   person: Person;
 
-  constructor(private personService: PersonService) { }
+  constructor(
+    private personService: PersonService,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
-    this.personId = 1;
-    this.personService.getById(this.personId).subscribe(person => this.person = person);
+    this.route.params
+      .map(params => params['id'])
+      .switchMap(id => this.personService.getById(id))
+      .subscribe(person => this.person = person);
   }
 }
