@@ -90,7 +90,7 @@ namespace Skillustrator.Api.Controllers
         }
 
         [HttpGet("{personId:int}/addskill/{skillId:int}")]
-        public async Task<IActionResult> AddSkills(int personId, int skillId)
+        public async Task<IActionResult> AddSkill(int personId, int skillId)
         {
             if (!ModelState.IsValid)
             {
