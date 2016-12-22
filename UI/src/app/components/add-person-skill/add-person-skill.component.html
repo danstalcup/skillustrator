@@ -1,16 +1,14 @@
 <div class="modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
   <div class="modal-content">
+    <app-error *ngIf="hasError" [errors]="errors"></app-error>
     <h4>Add Skill</h4>
-    <div class="input-field col s12">
-      <form>
-          <select materialize="material_select">
-            <option value="" disabled selected>Choose a new skill</option>
-            <option *ngFor="let skill of availableSkills" value="skill.id">{{skill.name}}</option>
-          </select>
-      </form>
-    </div>
+    <select materialize="material_select" [(ngModel)]="selectedSkill" #skillsDropdown>
+      <option value="" disabled selected>Choose new skill</option>
+      <option *ngFor="let skill of availableSkills" value="skill.id">{{skill?.name}}</option>
+    </select>
   </div>
   <div class="modal-footer">
-    <a href="javascript:void(0)" class="waves-effect waves-green btn-flat" (click)="closeModal()">Add</a>
+    <a href="javascript:void(0)" class="waves-effect waves-green btn-flat" (click)="addSkill()">Add</a>
+    <a href="javascript:void(0)" class="waves-effect waves-green btn-flat" (click)="closeModal()">Cancel</a>
   </div>
 </div>

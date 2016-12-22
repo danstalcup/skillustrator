@@ -11,7 +11,6 @@ import { PersonService } from '../../services/person.service';
 })
 export class PersonComponent implements OnInit {
   @ViewChild('skillsModal') skillsModalComponent;
-  personId: number;
   person: Person;
 
   constructor(

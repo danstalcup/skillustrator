@@ -1,15 +1,11 @@
 <div class="row">
   <h4><b>{{person?.firstName}} {{person?.lastName}}</b></h4>
   <a class="waves-effect waves-light btn" (click)="addSkill()"><i class="material-icons left">add</i>Add Skill</a>
-  <h4>
-    <b>{{person?.firstName}} {{person?.lastName}}</b>
-  </h4>
-
   <ul>
     <li *ngFor="let skill of person?.skills">
       {{ skill.name }}
     </li>
   </ul>
   <app-person-skills></app-person-skills>
-  <app-add-person-skill #skillsModal></app-add-person-skill>
+  <app-add-person-skill #skillsModal [person]="person"></app-add-person-skill>
 </div>
