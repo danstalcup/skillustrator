@@ -17,6 +17,7 @@ import { PersonComponent } from './components/person/person.component';
 import { PersonSkillsComponent } from './components/person-skills/person-skills.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { AddPersonSkillComponent } from './components/add-person-skill/add-person-skill.component';
+import { ErrorComponent } from './components/shared/error/error.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AddPersonSkillComponent } from './components/add-person-skill/add-perso
     PersonComponent,
     PersonSkillsComponent,
     SkillsComponent,
-    AddPersonSkillComponent
+    AddPersonSkillComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
