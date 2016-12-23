@@ -18,6 +18,9 @@
 }
 
 /* materialize-css overrides */
+.row .col {
+      padding: 0px !important;
+}
 .btn, .btn-large, .btn-flat {
       padding: 0 1rem !important;
 }

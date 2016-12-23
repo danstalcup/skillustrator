@@ -28,4 +28,8 @@ export class PersonComponent implements OnInit {
   addSkill(): void {
     this.skillsModalComponent.openModal();
   }
+
+  onUpdatePerson(updatedPerson: Person): void {
+    this.person = updatedPerson;
+  }
 }

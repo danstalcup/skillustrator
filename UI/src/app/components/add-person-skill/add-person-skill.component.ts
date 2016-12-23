@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { MaterializeAction } from 'angular2-materialize';
 
 import { Skill } from '../../models/skill';
@@ -14,8 +14,9 @@ import { PersonService } from '../../services/person.service';
 export class AddPersonSkillComponent implements OnInit {
   modalActions = new EventEmitter<string | MaterializeAction>();
   availableSkills: Skill[];
-  selectedSkill: Skill;
+  selectedSkillId: number;
   @Input() person: Person;
+  @Output() updatedPerson: EventEmitter<Person> = new EventEmitter<Person>();
   hasError: boolean;
   errors: string[];
 
@@ -37,12 +38,21 @@ export class AddPersonSkillComponent implements OnInit {
 
   addSkill(): void {
     this.hasError = false;
-    if (this.selectedSkill && this.selectedSkill.id) {
-      this.personService.addPersonSkill(this.person.id, this.selectedSkill.id).subscribe(person => this.person = person);
+    if (this.selectedSkillId) {
+      this.personService.addPersonSkill(this.person.id, this.selectedSkillId)
+        .map(person => {
+          this.person = person;
+          this.refreshPerson(this.person);
+        })
+        .subscribe();
       this.closeModal();
     } else {
       this.showError();
     }
+  }
+
+  refreshPerson(person: Person) {
+    this.updatedPerson.emit(person);
   }
 
   showError(): void {

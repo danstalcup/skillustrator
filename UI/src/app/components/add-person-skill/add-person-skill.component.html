@@ -2,9 +2,9 @@
   <div class="modal-content">
     <app-error *ngIf="hasError" [errors]="errors"></app-error>
     <h4>Add Skill</h4>
-    <select materialize="material_select" [(ngModel)]="selectedSkill" #skillsDropdown>
+    <select materialize="material_select" [(ngModel)]="selectedSkillId" #skillsDropdown>
       <option value="" disabled selected>Choose new skill</option>
-      <option *ngFor="let skill of availableSkills" value="skill.id">{{skill?.name}}</option>
+      <option *ngFor="let skill of availableSkills" value="{{skill.id}}">{{skill?.name}}</option>
     </select>
   </div>
   <div class="modal-footer">
