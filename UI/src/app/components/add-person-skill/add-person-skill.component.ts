@@ -40,11 +40,10 @@ export class AddPersonSkillComponent implements OnInit {
     this.hasError = false;
     if (this.selectedSkillId) {
       this.personService.addPersonSkill(this.person.id, this.selectedSkillId)
-        .map(person => {
+        .subscribe(person => {
           this.person = person;
           this.refreshPerson(this.person);
-        })
-        .subscribe();
+        });
       this.closeModal();
     } else {
       this.showError();
