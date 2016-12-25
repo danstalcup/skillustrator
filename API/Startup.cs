@@ -29,7 +29,7 @@ namespace ConsoleApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvcCore()
-                .AddJsonFormatters(o=> o.PreserveReferencesHandling = PreserveReferencesHandling.Objects);
+                .AddJsonFormatters();
 
             services.AddEntityFrameworkNpgsql()
                 .AddDbContext<SkillustratorContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
