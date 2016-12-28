@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col s12 m12">
+    <h5><b>Manage Tags</b></h5>
+    <ul class="collection">
+      <li class="collection-item avatar" *ngFor="let tag of tags">
+        <i class="material-icons circle blue">insert_chart</i>
+        <span class="title"><b>{{ tag.name }}</b></span>
+        <span class="secondary-content">
+          <a href="javascript:void(0)"><i class="material-icons">mode_edit</i></a>
+          <a href="javascript:void(0)"><i class="material-icons">delete</i></a>
+        </span>
+      </li>
+      <li class="collection-item avatar">  
+        <i class="material-icons circle blue">insert_chart</i>
+        <span class="title"><input #txtNewTag [(ngModel)]="newTagName"></span>
+        <span class="secondary-content">
+          <a href="javascript:void(0)" (click)="addTag(txtNewTag.value)" ><i class="material-icons">add</i></a>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>

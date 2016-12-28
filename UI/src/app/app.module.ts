@@ -10,11 +10,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpService } from './services/http.service';
 import { PersonService } from './services/person.service';
 import { SkillsService } from './services/skills.service';
+import { TagsService } from './services/tags.service';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { PersonComponent } from './components/person/person.component';
 import { PersonSkillsComponent } from './components/person-skills/person-skills.component';
 import { SkillsComponent } from './components/skills/skills.component';
+import { TagsComponent } from './components/tags/tags.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { SkillsComponent } from './components/skills/skills.component';
     HomeComponent,
     PersonComponent,
     PersonSkillsComponent,
-    SkillsComponent
+    SkillsComponent,
+    TagsComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { SkillsComponent } from './components/skills/skills.component';
   providers: [
     HttpService,
     PersonService,
-    SkillsService
+    SkillsService,
+    TagsService
   ],
   bootstrap: [AppComponent]
 })

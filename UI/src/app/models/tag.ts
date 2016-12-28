@@ -5,9 +5,7 @@ export class Tag {
   name: string;
   skills: SkillTag[];
 
-  constructor(id: number, name: string, skills: SkillTag[]) {
-    this.id = id;
+  constructor(name: string) {
     this.name = name;
-    this.skills = skills;
   }
 }
