@@ -22,7 +22,7 @@ export class TagsComponent implements OnInit {
     let newTag = new Tag(this.newTagName);
     this.tagsService.create(newTag).subscribe(tag => {
       this.tags.push(tag);
-      this.newTagName = "Test tag";
+      this.newTagName = "";
     });
     
   }
