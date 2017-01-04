@@ -38,16 +38,22 @@ namespace Skillustrator.Api.Controllers
             }
 
             var skills = new Collection<Skill>();
+            var skillViewModels = new Collection<SkillViewModel>();
 
             foreach (var personSkill in person.Skills) {
                 skills.Add(personSkill.Skill);
+                skillViewModels.Add(new SkillViewModel
+                {
+                    Name = personSkill.Skill.Name,
+                    Tags = personSkill.Skill.Tags
+                });
             }
 
             var personViewModel = new PersonViewModel {
                 Id = id, 
                 LastName = person.LastName,
                 FirstName = person.FirstName,
-                Skills = skills
+                Skills = skillViewModels
             };
 
             return new ObjectResult(personViewModel);
@@ -90,7 +96,7 @@ namespace Skillustrator.Api.Controllers
         }
 
         [HttpGet("{personId:int}/addskill/{skillId:int}")]
-        public async Task<IActionResult> AddSkills(int personId, int skillId)
+        public async Task<IActionResult> AddSkill(int personId, int skillId)
         {
             if (!ModelState.IsValid)
             {
@@ -119,7 +125,24 @@ namespace Skillustrator.Api.Controllers
 
             await _personRepository.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(Get), new { id = person.LastName }, person);
+            var personViewModel = new PersonViewModel {
+                Id = person.Id,
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                Skills = new Collection<SkillViewModel>()
+            };
+
+            foreach(var skill in person.Skills) 
+            {
+                var skillViewModel = new SkillViewModel 
+                {
+                    Name = skill.Skill.Name,
+                    Tags = skill.Skill.Tags
+                };
+                personViewModel.Skills.Add(skillViewModel);
+            }
+
+            return CreatedAtAction(nameof(Get), new { id = personViewModel.LastName }, personViewModel);
         }
     }
 }

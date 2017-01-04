@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 // Internal imports
+import { MaterializeDirective } from 'angular2-materialize';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpService } from './services/http.service';
@@ -15,15 +16,20 @@ import { HomeComponent } from './components/home/home.component';
 import { PersonComponent } from './components/person/person.component';
 import { PersonSkillsComponent } from './components/person-skills/person-skills.component';
 import { SkillsComponent } from './components/skills/skills.component';
+import { AddPersonSkillComponent } from './components/add-person-skill/add-person-skill.component';
+import { ErrorComponent } from './components/shared/error/error.component';
 
 @NgModule({
   declarations: [
+    MaterializeDirective,
     AppComponent,
     NavbarComponent,
     HomeComponent,
     PersonComponent,
     PersonSkillsComponent,
-    SkillsComponent
+    SkillsComponent,
+    AddPersonSkillComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

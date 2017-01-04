@@ -5,6 +5,7 @@
 .icon-align {
     vertical-align: middle;
     padding-bottom: 4px;
+    padding-right: 5px
 }
 .icon-align-nav-left {
       margin-right: 5px !important;
@@ -17,6 +18,15 @@
 }
 
 /* materialize-css overrides */
+.row .col {
+      padding: 0px !important;
+}
+.btn, .btn-large, .btn-flat {
+      padding: 0 1rem !important;
+}
+i.left {
+      margin-right: 5px !important;
+}
 nav i.material-icons {
       display: inline-block !important;
 }

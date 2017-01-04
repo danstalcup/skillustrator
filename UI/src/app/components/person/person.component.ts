@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Person } from '../../models/person';
@@ -10,7 +10,7 @@ import { PersonService } from '../../services/person.service';
   styleUrls: ['./person.component.css']
 })
 export class PersonComponent implements OnInit {
-  personId: number;
+  @ViewChild('skillsModal') skillsModalComponent;
   person: Person;
 
   constructor(
@@ -23,5 +23,13 @@ export class PersonComponent implements OnInit {
       .map(params => params['id'])
       .switchMap(id => this.personService.getById(id))
       .subscribe(person => this.person = person);
+  }
+
+  addSkill(): void {
+    this.skillsModalComponent.openModal();
+  }
+
+  onUpdatePerson(updatedPerson: Person): void {
+    this.person = updatedPerson;
   }
 }
