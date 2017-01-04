@@ -37,6 +37,7 @@ namespace ConsoleApplication
             services.AddScoped<IArticlesRepository, ArticlesRepository>();
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IRepository<Skill>, BaseRepository<Skill>>();
+            services.AddScoped<IRepository<Tag>, BaseRepository<Tag>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
