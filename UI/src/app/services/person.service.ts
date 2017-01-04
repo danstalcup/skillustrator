@@ -26,4 +26,11 @@ export class PersonService {
       .map(res => res.json() as Person)
       .catch(this.httpService.handleError);
   }
+
+  addPersonSkill(personId: number, skillId: number): Observable<Person> {
+    let apiUrlWithIds = this.apiUrl + '/' + personId + '/addSkill/' + skillId;
+    return this.http.get(apiUrlWithIds)
+      .map(res => res.json() as Person)
+      .catch(this.httpService.handleError);
+  }
 }
