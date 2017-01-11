@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Skill } from '../../models/skill';
+import { Person } from '../../models/person';
 
 @Component({
   selector: 'app-person-skills',
@@ -8,7 +8,7 @@ import { Skill } from '../../models/skill';
   styleUrls: ['./person-skills.component.css']
 })
 export class PersonSkillsComponent implements OnInit {
-  @Input() skills: Skill[];
+  @Input() person: Person;
 
   constructor() { }
 

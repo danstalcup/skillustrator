@@ -33,4 +33,15 @@ export class PersonService {
       .map(res => res.json() as Person)
       .catch(this.httpService.handleError);
   }
+
+  addPersonSkillWithMetadata(personSkill): Observable<Person> {
+    let apiUrlWithIds = this.apiUrl + '/' + personSkill.personId + '/addSkill/';
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = { headers: headers };
+
+    return this.http.post(apiUrlWithIds, JSON.stringify(personSkill), options)
+      .map(res => res.json() as Person)
+      .catch(this.httpService.handleError);
+  }
 }

@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpService } from './services/http.service';
 import { PersonService } from './services/person.service';
 import { SkillsService } from './services/skills.service';
+import { MetadataService } from './services/metadata.service';
 import { TagsService } from './services/tags.service';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -44,6 +45,7 @@ import { ErrorComponent } from './components/shared/error/error.component';
     HttpService,
     PersonService,
     SkillsService,
+    MetadataService,
     TagsService
   ],
   bootstrap: [AppComponent]

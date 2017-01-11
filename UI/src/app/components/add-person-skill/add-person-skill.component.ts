@@ -2,8 +2,12 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { MaterializeAction } from 'angular2-materialize';
 
 import { Skill } from '../../models/skill';
+import { SkillLevel } from '../../models/skill-level';
+import { TimePeriod } from '../../models/time-period';
 import { SkillsService } from '../../services/skills.service';
+import { MetadataService } from '../../services/metadata.service';
 import { Person } from '../../models/person';
+import { PersonSkill } from '../../models/person-skill';
 import { PersonService } from '../../services/person.service';
 
 @Component({
@@ -14,16 +18,29 @@ import { PersonService } from '../../services/person.service';
 export class AddPersonSkillComponent implements OnInit {
   modalActions = new EventEmitter<string | MaterializeAction>();
   availableSkills: Skill[];
+  availableSkillLevels: SkillLevel[];
+  availableTimePeriods: TimePeriod[];
   selectedSkillId: number;
+  selectedSkillLevelCode: string;
+  selectedTimeUsedCode: string;
+  selectedTimeLastUsedCode: string;
   @Input() person: Person;
   @Output() updatedPerson: EventEmitter<Person> = new EventEmitter<Person>();
   hasError: boolean;
   errors: string[];
 
-  constructor(private skillsService: SkillsService, private personService: PersonService) { }
+  constructor(
+    private skillsService: SkillsService, 
+    private personService: PersonService, 
+    private metadataService: MetadataService) { }
 
   ngOnInit() {
     this.skillsService.getAll().subscribe(skills => this.availableSkills = skills);
+    this.metadataService.getAll().subscribe(skillsMetadata => 
+    {
+      this.availableSkillLevels = skillsMetadata.skillLevels;
+      this.availableTimePeriods = skillsMetadata.timePeriods;
+    });
   }
 
   openModal(): void {
@@ -39,7 +56,16 @@ export class AddPersonSkillComponent implements OnInit {
   addSkill(): void {
     this.hasError = false;
     if (this.selectedSkillId) {
-      this.personService.addPersonSkill(this.person.id, this.selectedSkillId)
+      
+      var personSkill = {
+        personId: this.person.id,
+        skillId: this.selectedSkillId,
+        skillLevelCode: this.selectedSkillLevelCode,
+        timeUsedCode: this.selectedTimeUsedCode,
+        timeLastUsedCode: this.selectedTimeLastUsedCode
+      };
+
+      this.personService.addPersonSkillWithMetadata(personSkill)
         .subscribe(person => {
           this.person = person;
           this.refreshPerson(this.person);

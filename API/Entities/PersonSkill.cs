@@ -5,10 +5,6 @@ namespace Skillustrator.Api.Entities
 {
     public class PersonSkill : EntityBase
     {
-        public int PersonId { get; set; }
-
-        public Person Person { get; set; }
-
         public int SkillId { get; set; }
 
         public Skill Skill { get; set; }

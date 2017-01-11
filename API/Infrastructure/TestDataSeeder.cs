@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Skillustrator.Api.Entities;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Skillustrator.Api.Infrastructure
 {
@@ -18,24 +19,72 @@ namespace Skillustrator.Api.Infrastructure
                 if (await skillustratorContext.Database.EnsureCreatedAsync())
                 {
                     if (!await skillustratorContext.People.AnyAsync()) {
-                      await InsertData(skillustratorContext);
+                      await InsertTestData(skillustratorContext);
                     }
                 }
             }
         }
 
-        public async Task InsertData(SkillustratorContext db)
+        public static async Task InitializeDeficiencyDatabaseAsync(IServiceProvider serviceProvider, bool seedData = false)
         {
+            using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var db = serviceScope.ServiceProvider.GetService<SkillustratorContext>();
+
+                var appliedMigrations = await db.Database.GetAppliedMigrationsAsync();
+
+                if (!appliedMigrations.Any())
+                {
+                    Console.WriteLine("Creating Databse; Applying all migrations; Adding seed data");
+                    await db.Database.MigrateAsync();
+                    await InsertTestData(db);
+                }
+                else
+                {
+                    var pendingMigrations = await db.Database.GetPendingMigrationsAsync();
+                    if (pendingMigrations.Any())
+                    {
+                        Console.WriteLine("Applying pending migrations");
+                        await db.Database.MigrateAsync();
+                    }
+                    else
+                    {
+                        //TODO: Move Console.writeline to logger
+                        Console.WriteLine("No pending migrations");
+                    }
+                    if (seedData) {
+                        await InsertTestData(db);
+                    }
+                }
+            }
+        }
+
+        public static async Task InsertTestData(SkillustratorContext db)
+        {
+            if (db.TimePeriods.Any())
+                return;
+            
             var skills = new List<Skill>();
             skills.Add (new Skill { Name = "CSS" });
+            skills.Add (new Skill { Name = "Javascript" });            
             skills.Add (new Skill { Name = "C#" });
+            skills.Add (new Skill { Name = ".NET Core" });
+            skills.Add (new Skill { Name = "Angular" });
+            skills.Add (new Skill { Name = "React" });
+            skills.Add (new Skill { Name = "jQuery" });
+            skills.Add (new Skill { Name = "Python" });
+            skills.Add (new Skill { Name = "Django" });
+            skills.Add (new Skill { Name = "Flask" });
+            skills.Add (new Skill { Name = "Ruby" });
+            skills.Add (new Skill { Name = "Rails" });
+            skills.Add (new Skill { Name = "Javascript" });
 
             db.Skills.AddRange(skills);
 
             var person = new Person { 
                         Id = new Random().Next(),
-                        LastName = "TestLastName",
-                        FirstName = "TestFirstName"
+                        LastName = "Tester",
+                        FirstName = "Mister"
                     };
 
             db.People.Add(person);
@@ -51,3 +100,4 @@ namespace Skillustrator.Api.Infrastructure
 
     }
 }
+ 

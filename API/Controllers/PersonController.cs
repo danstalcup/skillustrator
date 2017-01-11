@@ -5,6 +5,7 @@ using Skillustrator.Api.Infrastructure;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
+using Skillustrator.ViewModels.Write;
 using System.Linq;
 
 namespace Skillustrator.Api.Controllers
@@ -15,12 +16,19 @@ namespace Skillustrator.Api.Controllers
         private readonly IPersonRepository _personRepository;
 
         private readonly IRepository<Skill> _skillRepository;
+
+        private readonly ISkillsMetadataRepository _metadataRepository;
         private readonly ILogger<PersonController> _logger; 
 
-        public PersonController(IPersonRepository personRepository, IRepository<Skill> skillRepository, ILogger<PersonController> logger)
+        public PersonController(
+            IPersonRepository personRepository, 
+            IRepository<Skill> skillRepository, 
+            ILogger<PersonController> logger,
+            ISkillsMetadataRepository metadataRepository)
         {
             _personRepository = personRepository;
             _skillRepository = skillRepository;
+            _metadataRepository = metadataRepository;
             _logger = logger;
         }
 
@@ -44,8 +52,12 @@ namespace Skillustrator.Api.Controllers
                 skills.Add(personSkill.Skill);
                 skillViewModels.Add(new SkillViewModel
                 {
+                    Id = personSkill.Skill.Id,
                     Name = personSkill.Skill.Name,
-                    Tags = personSkill.Skill.Tags
+                    Tags = personSkill.Skill.Tags,
+                    SkillLevel = personSkill?.SkillLevel,
+                    TimeUsed = personSkill?.TimeUsed, 
+                    TimeLastUsed = personSkill?.TimeSinceUsed 
                 });
             }
 
@@ -59,7 +71,6 @@ namespace Skillustrator.Api.Controllers
             return new ObjectResult(personViewModel);
         }
 
-        // TEST: curl -H "Content-Type: application/json" -X POST -d '{"lastname":"Posted"}' http://localhost:5000/api/applicant 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]Person person)
         {
@@ -95,26 +106,34 @@ namespace Skillustrator.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = person.LastName }, person);
         }
 
-        [HttpGet("{personId:int}/addskill/{skillId:int}")]
-        public async Task<IActionResult> AddSkill(int personId, int skillId)
+        [HttpPost("{personId:int}/addskill")]
+        public async Task<IActionResult> AddSkill(int git , [FromBody]PersonSkillViewModel personSkillViewModel)
         {
+            if (personSkillViewModel == null)
+            {
+                return BadRequest();
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var person = await _personRepository.GetPersonWithSkills(personId);
+            var person = await _personRepository.GetPersonWithSkills(personSkillViewModel.PersonId);
 
             if (person == null) 
             {
                 return NotFound();
             }
 
-            var skillToAdd = await _skillRepository.GetSingleAsync(skillId);
+            var skillToAdd = await _skillRepository.GetSingleAsync(personSkillViewModel.SkillId);
+            var skillsMetadata = await _metadataRepository.Get();
             var personSkill = new PersonSkill 
             { 
                 Skill = skillToAdd,
-                Person = person 
+                SkillLevel = skillsMetadata.SkillLevels.Where(x=> x.Code == personSkillViewModel.SkillLevelCode).FirstOrDefault(),
+                TimeUsed = skillsMetadata.TimePeriods.Where(x=> x.Code == personSkillViewModel.TimeLastUsedCode).FirstOrDefault(),
+                TimeSinceUsed = skillsMetadata.TimePeriods.Where(x=> x.Code == personSkillViewModel.TimeUsedCode).FirstOrDefault()
             };
 
             if (person.Skills == null) 

@@ -7,6 +7,8 @@ namespace Skillustrator.Api.Infrastructure
     {
         public DbSet<Person> People { get; set; }
         public DbSet<Skill> Skills { get; set; }
+        public DbSet<SkillLevel> SkillLevels { get; set; }        
+        public DbSet<TimePeriod> TimePeriods { get; set; }
 
         public SkillustratorContext(DbContextOptions options) : base(options)
         {
@@ -24,23 +26,10 @@ namespace Skillustrator.Api.Infrastructure
             modelBuilder.Entity<Organization>()
                 .HasMany<Person>(o => o.People)
                 .WithOne(p => p.Organization);
+                
             modelBuilder.Entity<Organization>().Property(o => o.Name).IsRequired();
-
             modelBuilder.Entity<Person>().Property(p => p.FirstName).IsRequired();
             modelBuilder.Entity<Person>().Property(p => p.LastName).IsRequired();
-
-            // modelBuilder.Entity<Person>()
-            //     HasMany<PersonSkill>(ps=> ps.PersonSkill);
-
-            modelBuilder.Entity<PersonSkill>()
-                .HasOne<Person>(ps => ps.Person)
-                .WithMany(p => p.Skills)
-                .IsRequired();
-            // modelBuilder.Entity<PersonSkill>()
-            //     .HasOne<Skill>(ps => ps.Skill)
-            //     .WithMany(s => s.People)
-            //     .IsRequired();
-
             modelBuilder.Entity<Skill>().Property(s => s.Name).IsRequired();
 
             modelBuilder.Entity<SkillTag>()

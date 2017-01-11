@@ -2,10 +2,11 @@
   <div class="col s12 m12">
     <h5><b>Category 1</b></h5>
     <ul class="collection">
-      <li *ngFor="let skill of skills" class="collection-item avatar">
+      <li *ngFor="let personSkill of person?.skills" class="collection-item avatar">
         <i class="material-icons circle blue">insert_chart</i>
-        <span class="title"><b>{{skill.name}}</b></span>
-        <p><i>SkillLevel, TimeUsed, TimeSinceUsed not yet hooked up</i></p>
+        <span class="title"><b>{{personSkill.name}}</b></span>
+        <p><i>{{personSkill.skillLevel?.description}}, {{personSkill.timeUsed?.description}}</i></p>
+        <p><i>Last used: {{personSkill.timeLastUsed?.description}}</i></p>
         <span class="secondary-content">
           <a href="javascript:void(0)"><i class="material-icons">mode_edit</i></a>
           <a href="javascript:void(0)"><i class="material-icons">delete</i></a>

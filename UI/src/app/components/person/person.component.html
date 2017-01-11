@@ -1,6 +1,6 @@
 <div class="row">
   <h4><b>{{person?.firstName}} {{person?.lastName}}</b></h4>
-  <a class="waves-effect waves-light btn" (click)="addSkill()"><i class="material-icons left">add</i>Add Skill</a>
-  <app-person-skills [skills]="person?.skills"></app-person-skills>
+  <app-person-skills [person]="person"></app-person-skills>
   <app-add-person-skill #skillsModal [person]="person" (updatedPerson)="onUpdatePerson($event)"></app-add-person-skill>
+  <div style="float: right"><a class="waves-effect waves-light btn" (click)="addSkill()"><i class="material-icons left">add</i>Add Skill</a></div>
 </div>

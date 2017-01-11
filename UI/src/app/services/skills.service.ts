@@ -33,4 +33,5 @@ export class SkillsService {
       .map(res => res.json() as Skill)
       .catch(this.httpService.handleError);
   }
+
 }

@@ -15,6 +15,10 @@ namespace Skillustrator.Api.Entities
 
         public const string OneToTwoYears = "ONE_TO_TWO_YEARS";
 
-        public const string MoreThanTwoYears = "MORE_TWO_YEARS";
+        public const string TwoToFiveYears = "TWO_TO_FIVE_YEARS";
+
+        public const string FiveToTenYears = "FIVE_TO_TEN_YEARS";
+
+        public const string MoreThanTenYears = "MORE_THAN_TEN_YEARS";
     }
 }

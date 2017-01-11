@@ -100,11 +100,7 @@ namespace app.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<int?>("PersonId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
 
                     b.ToTable("Skills");
                 });
@@ -120,7 +116,7 @@ namespace app.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SkillLevel");
+                    b.ToTable("SkillLevels");
                 });
 
             modelBuilder.Entity("Skillustrator.Api.Entities.SkillTag", b =>
@@ -165,7 +161,7 @@ namespace app.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TimePeriod");
+                    b.ToTable("TimePeriods");
                 });
 
             modelBuilder.Entity("Skillustrator.Api.Entities.Person", b =>
@@ -183,7 +179,7 @@ namespace app.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Skillustrator.Api.Entities.Skill", "Skill")
-                        .WithMany("People")
+                        .WithMany()
                         .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -198,13 +194,6 @@ namespace app.Migrations
                     b.HasOne("Skillustrator.Api.Entities.TimePeriod", "TimeUsed")
                         .WithMany()
                         .HasForeignKey("TimeUsedId");
-                });
-
-            modelBuilder.Entity("Skillustrator.Api.Entities.Skill", b =>
-                {
-                    b.HasOne("Skillustrator.Api.Entities.Person")
-                        .WithMany("RawSkills")
-                        .HasForeignKey("PersonId");
                 });
 
             modelBuilder.Entity("Skillustrator.Api.Entities.SkillTag", b =>

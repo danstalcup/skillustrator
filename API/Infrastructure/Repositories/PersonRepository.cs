@@ -16,10 +16,17 @@ namespace Skillustrator.Api.Infrastructure.Repositories
 
         public async Task<Person> GetPersonWithSkills(int personId) 
         {
-            return await _context.Set<Person>()
-                .Include(x=> x.Skills)
-                    .ThenInclude(x=> x.Skill)
+            var person = await _context.Set<Person>()
+                .Include(p=> p.Skills).ThenInclude(personSkills=> personSkills.Skill)
+                .Include(p=> p.Skills).ThenInclude(personSkills=> personSkills.TimeUsed)
+                    //.ThenInclude(t=> t.Description)
+                .Include(p=> p.Skills).ThenInclude(personSkills=> personSkills.TimeSinceUsed)
+                    //.ThenInclude(t=> t.Description)
+                .Include(p=> p.Skills).ThenInclude(personSkills=> personSkills.SkillLevel)
+                    //.ThenInclude(t=> t.Description)
                 .FirstOrDefaultAsync(x=> x.Id == personId);
+
+            return person;
         }
     }
 }

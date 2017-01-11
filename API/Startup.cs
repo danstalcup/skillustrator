@@ -36,6 +36,7 @@ namespace ConsoleApplication
 
             services.AddScoped<IArticlesRepository, ArticlesRepository>();
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<ISkillsMetadataRepository, SkillsMetadataRepository>();
             services.AddScoped<IRepository<Skill>, BaseRepository<Skill>>();
             services.AddScoped<IRepository<Tag>, BaseRepository<Tag>>();
         }
@@ -53,17 +54,17 @@ namespace ConsoleApplication
 
             app.UseMvc();
 
-            // Create DB on startup
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                serviceScope.ServiceProvider.GetService<SkillustratorContext>().Database.Migrate();
-            }
+            // // Create DB on startup
+            // using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            // {
+            //     serviceScope.ServiceProvider.GetService<SkillustratorContext>().Database.Migrate();
+            // }
+            TestDataSeeder.InitializeDeficiencyDatabaseAsync(app.ApplicationServices, true).Wait();
 
             // Not currently seeding anything, fix
             var applicantSeeder = new TestDataSeeder();
             applicantSeeder.SeedAsync(app.ApplicationServices).Wait();
             startupLogger.LogInformation("Data seed completed.");
-            
         }
     }
 }
