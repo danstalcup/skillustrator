@@ -24,6 +24,17 @@ export class TagsComponent implements OnInit {
       this.tags.push(tag);
       this.newTagName = "";
     });
-    
+  }
+
+  deleteTag(id) {
+    this.tagsService.delete(id).subscribe(() => {
+
+      var deletedIndex = this.tags.findIndex(function(tag) {
+        return tag.id == id;
+      });
+
+      this.tags.splice(deletedIndex, 1);
+
+    });
   }
 }

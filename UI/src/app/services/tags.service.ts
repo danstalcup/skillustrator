@@ -33,4 +33,11 @@ export class TagsService {
       .map(res => res.json() as Tag)
       .catch(this.httpService.handleError);
   }
+
+  delete(id: number): Observable<Tag> {
+    let apiUrlWithId = this.apiUrl + '/' + id;
+    let options = new RequestOptions({ headers: this.headers });
+    return this.http.delete(apiUrlWithId, options)
+      .catch(this.httpService.handleError);
+  }
 }

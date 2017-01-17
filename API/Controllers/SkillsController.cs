@@ -54,7 +54,26 @@ namespace Skillustrator.Api.Controllers
 
             _logger.LogDebug("Finished save");
 
-            return CreatedAtAction(nameof(Get), new { id = skill.Name }, skill);
+            return CreatedAtAction(nameof(Get), new { id = newSkill.Id }, newSkill);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            _logger.LogDebug("Starting delete");
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var skill = _skillRepository.GetSingle(id);
+            _skillRepository.Delete(skill);
+            await _skillRepository.SaveChangesAsync();
+
+            _logger.LogDebug("Finished delete");
+
+            return new NoContentResult();
         }
     }
 }
