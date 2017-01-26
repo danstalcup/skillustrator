@@ -37,7 +37,6 @@ namespace Skillustrator.Api.Infrastructure
                 {
                     Console.WriteLine("Creating Databse; Applying all migrations; Adding seed data");
                     await db.Database.MigrateAsync();
-                    await InsertReferenceData(db);
                     if (seedData) 
                     {
                         await InsertTestData(db);
@@ -73,14 +72,6 @@ namespace Skillustrator.Api.Infrastructure
 
             db.People.Add(person);
 
-            await db.SaveChangesAsync();
-        }
-
-        public static async Task InsertReferenceData(SkillustratorContext db)
-        {
-            if (db.TimePeriods.Any())
-                return;
-            
             var skills = new List<Skill>();
             skills.Add (new Skill { Name = "CSS" });
             skills.Add (new Skill { Name = "Javascript" });            
@@ -100,7 +91,5 @@ namespace Skillustrator.Api.Infrastructure
 
             await db.SaveChangesAsync();
         }
-
     }
 }
- 
