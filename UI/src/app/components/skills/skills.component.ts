@@ -24,6 +24,17 @@ export class SkillsComponent implements OnInit {
       this.skills.push(skill);
       this.newSkillName = "";
     });
-    
+  }
+
+  deleteSkill(id) {
+    this.skillsService.delete(id).subscribe(() => {
+
+      var deletedIndex = this.skills.findIndex(function(skill) {
+        return skill.id == id;
+      });
+
+      this.skills.splice(deletedIndex, 1);
+
+    });
   }
 }

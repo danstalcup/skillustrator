@@ -50,6 +50,11 @@ namespace Skillustrator.Api.Infrastructure
             return query.Where(predicate).FirstOrDefault();
         }
 
+        public T GetSingle(int id)
+        {
+            return  _context.Set<T>().FirstOrDefault(e => e.Id == id);
+        }
+
         public async Task<T> GetSingleAsync(int id)
         {
             return await _context.Set<T>().FirstOrDefaultAsync(e => e.Id == id);

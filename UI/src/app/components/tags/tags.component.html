@@ -7,7 +7,7 @@
         <span class="title"><b>{{ tag.name }}</b></span>
         <span class="secondary-content">
           <a href="javascript:void(0)"><i class="material-icons">mode_edit</i></a>
-          <a href="javascript:void(0)"><i class="material-icons">delete</i></a>
+          <a href="javascript:void(0)"><i class="material-icons" (click)="deleteTag(tag.id)">delete</i></a>
         </span>
       </li>
       <li class="collection-item avatar">  

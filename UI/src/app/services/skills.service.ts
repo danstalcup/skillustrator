@@ -34,4 +34,11 @@ export class SkillsService {
       .catch(this.httpService.handleError);
   }
 
+  delete(id: number): Observable<Skill> {
+    let apiUrlWithId = this.apiUrl + '/' + id;
+    let options = new RequestOptions({ headers: this.headers });
+    return this.http.delete(apiUrlWithId, options)
+      .catch(this.httpService.handleError);
+  }
+
 }

@@ -38,6 +38,7 @@ namespace ConsoleApplication
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<ISkillsMetadataRepository, SkillsMetadataRepository>();
             services.AddScoped<IRepository<Skill>, BaseRepository<Skill>>();
+            services.AddScoped<IRepository<PersonSkill>, BaseRepository<PersonSkill>>();
             services.AddScoped<IRepository<Tag>, BaseRepository<Tag>>();
         }
 

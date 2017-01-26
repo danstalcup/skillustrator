@@ -54,7 +54,26 @@ namespace Skillustrator.Api.Controllers
 
             _logger.LogDebug("Finished save");
 
-            return CreatedAtAction(nameof(Get), new { id = tag.Name }, tag);
+            return CreatedAtAction(nameof(Get), new { id = newTag.Id }, newTag);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            _logger.LogDebug("Starting delete");
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var tag = _tagRepository.GetSingle(id);
+            _tagRepository.Delete(tag);
+            await _tagRepository.SaveChangesAsync();
+
+            _logger.LogDebug("Finished delete");
+
+            return new NoContentResult();
         }
     }
 }

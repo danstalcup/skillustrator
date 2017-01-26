@@ -9,7 +9,7 @@
         <p><i>Last used: {{personSkill.timeLastUsed?.description}}</i></p>
         <span class="secondary-content">
           <a href="javascript:void(0)"><i class="material-icons">mode_edit</i></a>
-          <a href="javascript:void(0)"><i class="material-icons">delete</i></a>
+          <a href="javascript:void(0)" (click)="removeSkill(personSkill.id)"><i class="material-icons">delete</i></a>
         </span>
       </li>
     </ul>

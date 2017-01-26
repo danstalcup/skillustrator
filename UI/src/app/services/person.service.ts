@@ -44,4 +44,11 @@ export class PersonService {
       .map(res => res.json() as Person)
       .catch(this.httpService.handleError);
   }
+
+  removePersonSkill(personId: number, personSkillId: number): Observable<Person> {
+    let apiUrlWithIds = this.apiUrl + '/' + personId + '/removeSkill/' + personSkillId;
+    return this.http.delete(apiUrlWithIds)
+      .map(res => res.json() as Person)
+      .catch(this.httpService.handleError);
+  }
 }

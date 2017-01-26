@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
 using Skillustrator.ViewModels.Write;
+using Skillustrator.ViewModels.Factories;
 using System.Linq;
 
 namespace Skillustrator.Api.Controllers
@@ -17,17 +18,21 @@ namespace Skillustrator.Api.Controllers
 
         private readonly IRepository<Skill> _skillRepository;
 
+        private readonly IRepository<PersonSkill> _personSkillRepository;
+
         private readonly ISkillsMetadataRepository _metadataRepository;
         private readonly ILogger<PersonController> _logger; 
 
         public PersonController(
             IPersonRepository personRepository, 
-            IRepository<Skill> skillRepository, 
+            IRepository<Skill> skillRepository,
+            IRepository<PersonSkill> personSkillRepository,
             ILogger<PersonController> logger,
             ISkillsMetadataRepository metadataRepository)
         {
             _personRepository = personRepository;
             _skillRepository = skillRepository;
+            _personSkillRepository = personSkillRepository;
             _metadataRepository = metadataRepository;
             _logger = logger;
         }
@@ -48,25 +53,7 @@ namespace Skillustrator.Api.Controllers
             var skills = new Collection<Skill>();
             var skillViewModels = new Collection<SkillViewModel>();
 
-            foreach (var personSkill in person.Skills) {
-                skills.Add(personSkill.Skill);
-                skillViewModels.Add(new SkillViewModel
-                {
-                    Id = personSkill.Skill.Id,
-                    Name = personSkill.Skill.Name,
-                    Tags = personSkill.Skill.Tags,
-                    SkillLevel = personSkill?.SkillLevel,
-                    TimeUsed = personSkill?.TimeUsed, 
-                    TimeLastUsed = personSkill?.TimeSinceUsed 
-                });
-            }
-
-            var personViewModel = new PersonViewModel {
-                Id = id, 
-                LastName = person.LastName,
-                FirstName = person.FirstName,
-                Skills = skillViewModels
-            };
+            var personViewModel = PersonViewModelFactory.Build(person);
 
             return new ObjectResult(personViewModel);
         }
@@ -132,8 +119,8 @@ namespace Skillustrator.Api.Controllers
             { 
                 Skill = skillToAdd,
                 SkillLevel = skillsMetadata.SkillLevels.Where(x=> x.Code == personSkillViewModel.SkillLevelCode).FirstOrDefault(),
-                TimeUsed = skillsMetadata.TimePeriods.Where(x=> x.Code == personSkillViewModel.TimeLastUsedCode).FirstOrDefault(),
-                TimeSinceUsed = skillsMetadata.TimePeriods.Where(x=> x.Code == personSkillViewModel.TimeUsedCode).FirstOrDefault()
+                TimeUsed = skillsMetadata.TimePeriods.Where(x=> x.Code == personSkillViewModel.TimeUsedCode).FirstOrDefault(),
+                TimeSinceUsed = skillsMetadata.TimePeriods.Where(x=> x.Code == personSkillViewModel.TimeLastUsedCode).FirstOrDefault()
             };
 
             if (person.Skills == null) 
@@ -144,24 +131,33 @@ namespace Skillustrator.Api.Controllers
 
             await _personRepository.SaveChangesAsync();
 
-            var personViewModel = new PersonViewModel {
-                Id = person.Id,
-                FirstName = person.FirstName,
-                LastName = person.LastName,
-                Skills = new Collection<SkillViewModel>()
-            };
-
-            foreach(var skill in person.Skills) 
-            {
-                var skillViewModel = new SkillViewModel 
-                {
-                    Name = skill.Skill.Name,
-                    Tags = skill.Skill.Tags
-                };
-                personViewModel.Skills.Add(skillViewModel);
-            }
+            var personViewModel = PersonViewModelFactory.Build(person);
 
             return CreatedAtAction(nameof(Get), new { id = personViewModel.LastName }, personViewModel);
+        }
+
+        [HttpDelete("{personId:int}/removeskill/{personSkillId:int}")]
+        public async Task<IActionResult> RemoveSkill(int personId, int personSkillId)
+        {
+            var person = await _personRepository.GetPersonWithSkills(personId);
+
+            if (person == null) 
+            {
+                return NotFound();
+            }
+
+            var skillToRemove = person.Skills.Where(x => x.Id == personSkillId).SingleOrDefault();
+            if (skillToRemove != null)
+            {
+                person.Skills.Remove(skillToRemove);
+                _personSkillRepository.Delete(skillToRemove);
+                await _personSkillRepository.SaveChangesAsync();
+                await _personRepository.SaveChangesAsync();
+            }
+
+            var personViewModel = PersonViewModelFactory.Build(person);   
+
+            return new ObjectResult(personViewModel);        
         }
     }
 }

@@ -8,9 +8,10 @@ using Skillustrator.Api.Infrastructure;
 namespace app.Migrations
 {
     [DbContext(typeof(SkillustratorContext))]
-    partial class SkillustratorContextModelSnapshot : ModelSnapshot
+    [Migration("20170115164724_SkillsMetadataRelations")]
+    partial class SkillsMetadataRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)

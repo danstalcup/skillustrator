@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace app.Migrations
@@ -13,7 +14,7 @@ namespace app.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Category = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true)
                 },
@@ -27,7 +28,7 @@ namespace app.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -40,7 +41,7 @@ namespace app.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -53,7 +54,7 @@ namespace app.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Code = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true)
                 },
@@ -67,7 +68,7 @@ namespace app.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -80,7 +81,7 @@ namespace app.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Code = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true)
                 },
@@ -94,7 +95,7 @@ namespace app.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     FirstName = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(nullable: false),
                     OrganizationId = table.Column<int>(nullable: true)
@@ -115,7 +116,7 @@ namespace app.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     SkillId = table.Column<int>(nullable: false),
                     TagId = table.Column<int>(nullable: false)
                 },
@@ -141,7 +142,7 @@ namespace app.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGeneratedOnAdd", true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     PersonId = table.Column<int>(nullable: false),
                     SkillId = table.Column<int>(nullable: false),
                     SkillLevelId = table.Column<int>(nullable: true),
