@@ -132,8 +132,8 @@ namespace Skillustrator.Api.Controllers
             { 
                 Skill = skillToAdd,
                 SkillLevel = skillsMetadata.SkillLevels.Where(x=> x.Code == personSkillViewModel.SkillLevelCode).FirstOrDefault(),
-                TimeUsed = skillsMetadata.TimePeriods.Where(x=> x.Code == personSkillViewModel.TimeLastUsedCode).FirstOrDefault(),
-                TimeSinceUsed = skillsMetadata.TimePeriods.Where(x=> x.Code == personSkillViewModel.TimeUsedCode).FirstOrDefault()
+                TimeUsed = skillsMetadata.TimePeriods.Where(x=> x.Code == personSkillViewModel.TimeUsedCode).FirstOrDefault(),
+                TimeSinceUsed = skillsMetadata.TimePeriods.Where(x=> x.Code == personSkillViewModel.TimeLastUsedCode).FirstOrDefault()
             };
 
             if (person.Skills == null) 
