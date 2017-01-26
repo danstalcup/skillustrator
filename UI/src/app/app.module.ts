@@ -21,7 +21,7 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { TagsComponent } from './components/tags/tags.component';
 import { AddPersonSkillComponent } from './components/add-person-skill/add-person-skill.component';
 import { ErrorComponent } from './components/shared/error/error.component';
-import { SearchComponent } from './search/search.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [

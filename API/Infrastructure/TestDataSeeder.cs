@@ -37,7 +37,11 @@ namespace Skillustrator.Api.Infrastructure
                 {
                     Console.WriteLine("Creating Databse; Applying all migrations; Adding seed data");
                     await db.Database.MigrateAsync();
-                    await InsertTestData(db);
+                    await InsertReferenceData(db);
+                    if (seedData) 
+                    {
+                        await InsertTestData(db);
+                    }
                 }
                 else
                 {
@@ -46,20 +50,33 @@ namespace Skillustrator.Api.Infrastructure
                     {
                         Console.WriteLine("Applying pending migrations");
                         await db.Database.MigrateAsync();
+                        if (seedData) 
+                        {
+                            await InsertTestData(db);
+                        }
                     }
                     else
                     {
-                        //TODO: Move Console.writeline to logger
                         Console.WriteLine("No pending migrations");
-                    }
-                    if (seedData) {
-                        await InsertTestData(db);
                     }
                 }
             }
         }
 
         public static async Task InsertTestData(SkillustratorContext db)
+        {
+            var person = new Person { 
+                        Id = 999,
+                        LastName = "Tester",
+                        FirstName = "Mister"
+                    };
+
+            db.People.Add(person);
+
+            await db.SaveChangesAsync();
+        }
+
+        public static async Task InsertReferenceData(SkillustratorContext db)
         {
             if (db.TimePeriods.Any())
                 return;
@@ -80,14 +97,6 @@ namespace Skillustrator.Api.Infrastructure
             skills.Add (new Skill { Name = "Javascript" });
 
             db.Skills.AddRange(skills);
-
-            var person = new Person { 
-                        Id = new Random().Next(),
-                        LastName = "Tester",
-                        FirstName = "Mister"
-                    };
-
-            db.People.Add(person);
 
             await db.SaveChangesAsync();
         }
