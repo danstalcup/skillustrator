@@ -88,14 +88,8 @@ namespace Skillustrator.Api.Infrastructure
                     };
 
             db.People.Add(person);
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (Exception exp)
-            {                
-                throw; 
-            }
+
+            await db.SaveChangesAsync();
         }
 
     }
