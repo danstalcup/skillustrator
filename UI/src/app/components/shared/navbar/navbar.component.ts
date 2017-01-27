@@ -16,11 +16,11 @@ export class NavbarComponent implements OnInit {
   constructor(private personService: PersonService) { }
 
   ngOnInit() {
-    this.currentUserId = 1;
-    this.isUserLoggedIn = !!this.currentUserId;
-    if (this.isUserLoggedIn) {
-      this.personService.getById(this.currentUserId).subscribe(user => this.currentUser = user);
-    }
+    //TODO: Probably can use this when wiring up login
+    // this.isUserLoggedIn = !!this.currentUserId;
+    // if (this.isUserLoggedIn) {
+    //   this.personService.getById(this.currentUserId).subscribe(user => this.currentUser = user);
+    // }
   }
 
 }

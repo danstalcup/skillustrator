@@ -37,7 +37,10 @@ namespace Skillustrator.Api.Infrastructure
                 {
                     Console.WriteLine("Creating Databse; Applying all migrations; Adding seed data");
                     await db.Database.MigrateAsync();
-                    await InsertTestData(db);
+                    if (seedData) 
+                    {
+                        await InsertTestData(db);
+                    }
                 }
                 else
                 {
@@ -46,14 +49,14 @@ namespace Skillustrator.Api.Infrastructure
                     {
                         Console.WriteLine("Applying pending migrations");
                         await db.Database.MigrateAsync();
+                        if (seedData) 
+                        {
+                            await InsertTestData(db);
+                        }
                     }
                     else
                     {
-                        //TODO: Move Console.writeline to logger
                         Console.WriteLine("No pending migrations");
-                    }
-                    if (seedData) {
-                        await InsertTestData(db);
                     }
                 }
             }
@@ -61,9 +64,14 @@ namespace Skillustrator.Api.Infrastructure
 
         public static async Task InsertTestData(SkillustratorContext db)
         {
-            if (db.TimePeriods.Any())
-                return;
-            
+            var person = new Person { 
+                        Id = 999,
+                        LastName = "Tester",
+                        FirstName = "Mister"
+                    };
+
+            db.People.Add(person);
+
             var skills = new List<Skill>();
             skills.Add (new Skill { Name = "CSS" });
             skills.Add (new Skill { Name = "Javascript" });            
@@ -81,23 +89,8 @@ namespace Skillustrator.Api.Infrastructure
 
             db.Skills.AddRange(skills);
 
-            var person = new Person { 
-                        Id = new Random().Next(),
-                        LastName = "Tester",
-                        FirstName = "Mister"
-                    };
-
-            db.People.Add(person);
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (Exception exp)
-            {                
-                throw; 
-            }
+            await db.SaveChangesAsync();
         }
-
     }
 }
- 
+

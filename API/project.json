@@ -26,8 +26,11 @@
    "Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.1.0",
    "Microsoft.AspNetCore.Authentication.JwtBearer": "1.0.0-*",
    "Microsoft.AspNetCore.Authorization": "1.1.0",
-   "Microsoft.AspNetCore.Http.Abstractions": "1.1.0"
-   //"Npgsql.EntityFrameworkCore.PostgreSQL.Design": "1.0.2"
+   "Microsoft.AspNetCore.Http.Abstractions": "1.1.0",
+   "xunit": "2.2.0-beta2-build3300",
+   "dotnet-test-xunit": "2.2.0-preview2-build1029",
+   "Microsoft.DotNet.InternalAbstractions": "1.0.0", // Workaround for bug in dotnet test ,
+   "Microsoft.AspNetCore.TestHost": "1.1.0" // Lightweight host for integration testing
   },
   "frameworks": {
     "netcoreapp1.1": {
