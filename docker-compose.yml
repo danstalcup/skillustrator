@@ -4,7 +4,7 @@ services:
 
   api:
     container_name: 'skillu_api'
-    image: 'wyntuition/skillustrator-api'
+    image: 'wyn/skillustrator-api'
     build:
       context: ./API
       dockerfile: Dockerfile
@@ -20,10 +20,10 @@ services:
 
   ui:
     container_name: 'skillu_ui'
-    image: 'wyntuition/skillustrator-ui'
+    image: 'wyn/skillustrator-ui'
     build:
       context: ./UI
-      dockerfile: Dockerfile.App
+      dockerfile: Dockerfile.AppAndAngular2
     volumes:
       - ./UI:/app
     ports:
