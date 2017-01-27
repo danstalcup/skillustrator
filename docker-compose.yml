@@ -2,19 +2,36 @@ version: '2'
 
 services:
 
-  web:
-    container_name: 'skillu'
+  api:
+    container_name: 'skillu_api'
     image: 'msexcella:aspnetcore-dev-env'
     build:
-      context: .
+      context: ./API
       dockerfile: Dockerfile
     volumes:
-      - .:/app
+      - ./API:/app
     ports:
-     - "5000:5000"
+      - "5000:5000"
     entrypoint: ["sh", "./scripts/go.sh"] 
     depends_on:
-     - "postgres"
+      - postgres
+    networks:
+      - aspnetcoreapp-network
+
+  ui:
+    container_name: 'skillu_ui'
+    image: 'msexcella:angular-dev-env'
+    build:
+      context: ./UI
+      dockerfile: Dockerfile
+    volumes:
+      - ./UI:/app
+    ports:
+      - "4200:4200"
+    links:
+      - api
+    depends_on:
+      - api
     networks:
       - aspnetcoreapp-network
 
@@ -26,7 +43,7 @@ services:
     environment:
       POSTGRES_PASSWORD: password
     ports:
-     - "5432:5432"
+      - "5432:5432"
     networks:
       - aspnetcoreapp-network
 
