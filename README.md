@@ -1,8 +1,6 @@
 # Skillustrator
 
-## API
-
-### Run the application in ASP.NET Core container and database container
+### Run the application with an Angular 2, ASP.NET Core API through data access layer container, and a database container
 
 **NOTE for Windows users**: you must have the new bash installed (comes with Windows 10 Anniversary Update), and you should use this bash. 
 
@@ -14,13 +12,13 @@
 
     `docker-compose up -d`
 
-It should be running on http://localhost:5000/api/articles now.
+The UI should be running on http://localhost:4200/person/999 now, and the API is accessible through http://localhost:4200/api/person/999.
 
 1. If you need to log into the container (i.e. run migrations or troubleshoot), use this command. Use `docker ps` to list running containers and see the name:
 
     `docker exec -it <container_name> bash`
 
-1. When you're finished developing, run this to *stop the app & containers*. Simply run the up command above to restart them:
+1. Run this to *stop the app & containers*. Simply run the up command above to restart them:
 
     `docker-compose stop`
 
@@ -73,7 +71,7 @@ The above `docker-compose` command will also run a lightweight container for the
 
 Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-### To run this Angular 2/Angular-CLI UI outside of Docker:
+### NOTE: To run this Angular 2/Angular-CLI UI outside of Docker:
 
 First, you will need Node 4 or higher, as well as NPM 3 or higher (download here https://nodejs.org/en/download/).
 

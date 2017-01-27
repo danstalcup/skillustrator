@@ -3,19 +3,19 @@
     <app-error *ngIf="hasError" [errors]="errors"></app-error>
     <h4>Add Skill</h4>
     <h6><em>Choose:</em></h6>
-    <select materialize="material_select" [(ngModel)]="selectedSkillId" #skillsDropdown>
+    <select materialize="material_select" [materializeSelectOptions]="availableSkills" [(ngModel)]="selectedSkillId" #skillsDropdown>
       <option value="" disabled selected>Skill</option>
-      <option *ngFor="let skill of availableSkills" value="{{skill.id}}">{{skill?.name}}</option>
+      <option *ngFor="let skill of availableSkills" [ngValue]="skill.id">{{skill.name}}</option>
     </select>
-    <select materialize="material_select" [(ngModel)]="selectedSkillLevelCode" #skillLevelDropdown>
+    <select materialize="material_select" [(ngModel)]="selectedSkillLevelCode" [materializeSelectOptions]="availableSkillLevels" #skillLevelDropdown>
       <option value="" disabled selected>Skill level</option>
       <option *ngFor="let skillLevel of availableSkillLevels" value="{{skillLevel.code}}">{{skillLevel?.description}}</option>
     </select>
-    <select materialize="material_select" [(ngModel)]="selectedTimeUsedCode" #timeUsedDropdown>
+    <select materialize="material_select" [(ngModel)]="selectedTimeUsedCode" [materializeSelectOptions]="availableTimePeriods" #timeUsedDropdown>
       <option value="" disabled selected>Time used</option>
       <option *ngFor="let timePeriod of availableTimePeriods" value="{{timePeriod.code}}">{{timePeriod?.description}}</option>
     </select>
-    <select materialize="material_select" [(ngModel)]="selectedTimeLastUsedCode" #timeLastUsedDropdown>
+    <select materialize="material_select" [(ngModel)]="selectedTimeLastUsedCode" [materializeSelectOptions]="availableTimePeriods" #timeLastUsedDropdown>
       <option value="" disabled selected>Last time used</option>
       <option *ngFor="let timePeriod of availableTimePeriods" value="{{timePeriod.code}}">{{timePeriod?.description}}</option>
     </select>

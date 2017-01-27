@@ -4,7 +4,7 @@ services:
 
   api:
     container_name: 'skillu_api'
-    image: 'msexcella:aspnetcore-dev-env'
+    image: 'wyntuition:skillustrator-api'
     build:
       context: ./API
       dockerfile: Dockerfile
@@ -20,10 +20,10 @@ services:
 
   ui:
     container_name: 'skillu_ui'
-    image: 'msexcella:angular-dev-env'
+    image: 'wyntuition:skillustrator-ui'
     build:
       context: ./UI
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.App
     volumes:
       - ./UI:/app
     ports:
@@ -36,7 +36,7 @@ services:
       - aspnetcoreapp-network
 
   postgres:
-    container_name: 'postgres'
+    container_name: 'skillustrator-postgres'
     image: postgres
     volumes:
       - 'postgres:/var/lib/postgresql/data'
