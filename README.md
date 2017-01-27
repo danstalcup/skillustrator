@@ -69,13 +69,21 @@ It should be running on http://localhost:5000/api/articles now.
 
 ## UI
 
-### To run this Angular 2/Angular-CLI UI:
+The above `docker-compose` command will also run a lightweight container for the UI.
+
+Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### To run this Angular 2/Angular-CLI UI outside of Docker:
 
 First, you will need Node 4 or higher, as well as NPM 3 or higher (download here https://nodejs.org/en/download/).
 
 Second, install Angular-CLI globally:
 ```bash
 npm install -g angular-cli
+```
+
+Third, create an entry in your computer's `HOSTS` file:
+```api   127.0.0.1
 ```
 
 Run the following commands to install dependencies and create a server:
@@ -88,8 +96,6 @@ npm start
 
 NOTE: "ng serve" is the standard start-up command for Angular CLI, however you must run "npm start" to ensure back-end API calls work properly (see https://github.com/angular/angular-cli#proxy-to-backend).
 
-Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
 
 ## Specs
 
@@ -99,7 +105,7 @@ Navigate to `http://localhost:4200/`. The app will automatically reload if you c
 - API: 
     - ASP.NET Core Web API in a Docker container
     - Data layer: EF Core 1.0, repository pattern
-- UI: Angular 2
+- UI: Angular 2 in a Docker container
 
 ## Additional NOTES
 
