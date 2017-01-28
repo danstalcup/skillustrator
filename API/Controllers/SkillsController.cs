@@ -5,28 +5,38 @@ using Skillustrator.Api.Infrastructure;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
+using Skillustrator.Api.Infrastructure.Repositories;
 
 namespace Skillustrator.Api.Controllers
 {
     [Route("/api/[controller]")]
     public class SkillsController : Controller
     {
-        private readonly IRepository<Skill> _skillRepository;
+        private readonly ISkillRepository _skillRepository;
         private readonly ILogger<SkillsController> _logger; 
 
-        public SkillsController(IRepository<Skill> skillRepository, ILogger<SkillsController> logger)
+        public SkillsController(ISkillRepository skillRepository, ILogger<SkillsController> logger)
         {
             _skillRepository = skillRepository;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Skill>> Get() => await _skillRepository.GetAllAsync();
+        public async Task<IEnumerable<Skill>> Get([FromQuery] string tag)
+        {
+            if (string.IsNullOrEmpty(tag))
+            {
+                return await _skillRepository.GetAllSkillsWithTags();
+            }
+            else {
+                return await _skillRepository.GetAllSkillsByTag(tag);
+            }
+        } 
 
         [HttpGet("{id:int}")]
         public async Task<IActionResult> Get(int id)
         {
-            var skill = await _skillRepository.GetSingleAsync(id);
+            var skill = await _skillRepository.GetSkillWithTags(id);
             if (skill == null)
             {
                 return NotFound(); // This makes it return 404; otherwise it will return a 204 (no content) 

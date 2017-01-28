@@ -29,7 +29,10 @@ namespace ConsoleApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvcCore()
-                .AddJsonFormatters();
+                .AddJsonFormatters()
+                .AddJsonOptions(
+                    options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );;
 
             services.AddEntityFrameworkNpgsql()
                 .AddDbContext<SkillustratorContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
@@ -40,6 +43,7 @@ namespace ConsoleApplication
             services.AddScoped<IRepository<Skill>, BaseRepository<Skill>>();
             services.AddScoped<IRepository<PersonSkill>, BaseRepository<PersonSkill>>();
             services.AddScoped<IRepository<Tag>, BaseRepository<Tag>>();
+            services.AddScoped<ISkillRepository, SkillRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

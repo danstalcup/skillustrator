@@ -5,7 +5,12 @@
       <li class="collection-item avatar" *ngFor="let skill of skills">
         <i class="material-icons circle blue">insert_chart</i>
         <span class="title"><b>{{ skill.name }}</b></span>
-        <p>Tags:</p>
+        <p>
+          Tags:
+          <a href="manage-skills?tag={{skillTag.tag.name}}" class="chip" *ngFor="let skillTag of skill.tags">
+            {{skillTag.tag.name}}
+          </a>
+        </p>
         <span class="secondary-content">
           <a href="javascript:void(0)"><i class="material-icons">mode_edit</i></a>
           <a href="javascript:void(0)"><i class="material-icons" (click)="deleteSkill(skill.id)">delete</i></a>
@@ -14,7 +19,7 @@
       <li class="collection-item avatar">  
         <i class="material-icons circle blue">insert_chart</i>
         <span class="title"><input #txtNewSkill [(ngModel)]="newSkillName"></span>
-        <p>Tags:</p>
+        <p>&nbsp;</p>
         <span class="secondary-content">
           <a href="javascript:void(0)" (click)="addSkill(txtNewSkill.value)" ><i class="material-icons">add</i></a>
         </span>

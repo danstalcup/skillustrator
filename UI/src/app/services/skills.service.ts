@@ -20,6 +20,12 @@ export class SkillsService {
       .catch(this.httpService.handleError);
   }
 
+  getByTag(tag: string): Observable<Skill[]> {
+    return this.http.get(this.apiUrl + "?tag=" + tag)
+      .map(res => res.json() as Skill[])
+      .catch(this.httpService.handleError);
+  }
+
   getById(id: number): Observable<Skill> {
     let apiUrlWithId = this.apiUrl + '/' + id;
     return this.http.get(apiUrlWithId)
