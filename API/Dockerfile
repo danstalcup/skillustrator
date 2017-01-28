@@ -8,6 +8,7 @@ FROM microsoft/dotnet:1.1.0-sdk-projectjson
 # set up network
 EXPOSE 5000/tcp
 ENV ASPNETCORE_URLS http://*:5000
+ENV USE_POLLING_FILE_WATCHER=true
 
 # copy files for building from current directory to target on image 
 COPY . /app/
