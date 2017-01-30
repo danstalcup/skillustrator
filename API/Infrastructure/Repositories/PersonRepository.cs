@@ -18,6 +18,7 @@ namespace Skillustrator.Api.Infrastructure.Repositories
         {
             var person = await _context.Set<Person>()
                 .Include(p=> p.Skills).ThenInclude(personSkills=> personSkills.Skill)
+                    .ThenInclude(skill => skill.Tags).ThenInclude(tag => tag.Tag)
                 .Include(p=> p.Skills).ThenInclude(personSkills=> personSkills.TimeUsed)
                     //.ThenInclude(t=> t.Description)
                 .Include(p=> p.Skills).ThenInclude(personSkills=> personSkills.TimeSinceUsed)

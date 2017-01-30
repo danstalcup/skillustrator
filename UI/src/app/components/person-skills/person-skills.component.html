@@ -5,6 +5,9 @@
       <li *ngFor="let personSkill of person?.skills" class="collection-item avatar">
         <i class="material-icons circle blue">insert_chart</i>
         <span class="title"><b>{{personSkill.name}}</b></span>
+        <span class="chip" *ngFor="let skillTag of personSkill.tags">
+          {{skillTag.tag.name}}
+        </span>
         <p><i>{{personSkill.skillLevel?.description}}, {{personSkill.timeUsed?.description}}</i></p>
         <p><i>Last used: {{personSkill.timeLastUsed?.description}}</i></p>
         <span class="secondary-content">
