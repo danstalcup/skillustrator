@@ -6,9 +6,9 @@ Using Docker Compose to deploy the containers to Azure Container Service (ACS)
 
 1. Log into the master ACS VM. There is a SSH key provided in this directory to do so:
 
-`ssh excellaacs@excellaacsmgmt.eastus.cloudapp.azure.com -A -p 2200`
+`ssh -i .ssh/id_rsa excellaacs@excellaacsmgmt.eastus.cloudapp.azure.com -A -p 2200`
 
 1. Deploy the containers:
 
-`docker-compose up -d`
+`docker-compose -f .\docker-compose.prod.yml push`
 
