@@ -6,7 +6,7 @@ services:
     container_name: 'skillu_api'
     image: 'excellalabs/skillustrator-api'
     build:
-      context: ./API
+      #context: ./API
       dockerfile: Dockerfile
     volumes:
       #- ./API:/app
