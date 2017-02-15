@@ -19,22 +19,22 @@ services:
     networks:
       - aspnetcoreapp-network
 
-  ui:
-    container_name: 'skillu_ui'
-    image: 'excellalabs/skillustrator-ui'
-    build:
-      context: ./UI
-      dockerfile: Dockerfile.AppAndAngular2
-    volumes:
-      - C:/dev/Skills%20Illustrator/UI:/app
-    ports:
-      - "4200:4200"
-    links:
-      - api
-    depends_on:
-      - api
-    networks:
-      - aspnetcoreapp-network
+  # ui:
+  #   container_name: 'skillu_ui'
+  #   image: 'excellalabs/skillustrator-ui'
+  #   build:
+  #     context: ./UI
+  #     dockerfile: Dockerfile.AppAndAngular2
+  #   volumes:
+  #     - C:/dev/Skills%20Illustrator/UI:/app
+  #   ports:
+  #     - "4200:4200"
+  #   links:
+  #     - api
+  #   depends_on:
+  #     - api
+  #   networks:
+  #     - aspnetcoreapp-network
 
   postgres:
     container_name: 'skillustrator-postgres'
