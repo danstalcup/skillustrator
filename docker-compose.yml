@@ -10,7 +10,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       #- ./API:/app
-      - C:/dev/Skills%20Illustrator/API:/app
+      #- C:/dev/Skills%20Illustrator/API:/app
     ports:
       - "5000:5000"
     entrypoint: ["sh", "./scripts/go.sh"] 
