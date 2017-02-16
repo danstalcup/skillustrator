@@ -36,7 +36,8 @@ namespace ConsoleApplication
 
             services.AddEntityFrameworkNpgsql()
                 //.AddDbContext<SkillustratorContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-                .AddDbContext<SkillustratorContext>(options => options.UseNpgsql("User ID=postgres;Password=password;Server=172.18.0.2;Port=5432;Database=skillustrator;Integrated Security=true;Pooling=true;"));
+                //.AddDbContext<SkillustratorContext>(options => options.UseNpgsql("User ID=postgres;Password=password;Server=172.18.0.2;Port=5432;Database=skillustrator;Integrated Security=true;Pooling=true;"));
+                .AddDbContext<SkillustratorContext>(options => options.UseNpgsql("User ID=postgres;Password=password;Server=postgres;Port=5432;Database=skillustrator;Integrated Security=true;Pooling=true;"));
 
             services.AddScoped<IArticlesRepository, ArticlesRepository>();
             services.AddScoped<IPersonRepository, PersonRepository>();
