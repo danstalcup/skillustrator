@@ -1,3 +1,8 @@
 <p>
    <!--<input type="text" [ngFormControl] = "term" class="form-control" placeholder={{placeHolder}} >           -->
+   <!--Search: <input ng2-auto-complete [(ngModel)]="myData" [source]="mySource" />-->
+   <input ng2-auto-complete placeholder="enter text" 
+        [(ngModel)]="searchInput" 
+        [source]="arrayOfStrings"
+        tabindex="0">
 </p>

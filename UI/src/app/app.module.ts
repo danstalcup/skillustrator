@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
 
 // Internal imports
 import { MaterializeDirective } from 'angular2-materialize';
@@ -41,7 +42,8 @@ import { SearchComponent } from './components/search/search.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2AutoCompleteModule
   ],
   providers: [
     HttpService,
