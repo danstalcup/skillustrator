@@ -8,9 +8,9 @@ services:
     build:
       context: ./API
       dockerfile: Dockerfile
-    #volumes:
-      #- ./API:/app
-      #- C:/dev/Skills%20Illustrator/API:/app
+    volumes:
+      - ./API:/app
+      - C:/dev/Skills%20Illustrator/API:/app
     ports:
       - "5000:5000"
     entrypoint: ["sh", "./scripts/go.sh"] 
@@ -19,22 +19,22 @@ services:
     networks:
       - aspnetcoreapp-network
 
-  # ui:
-  #   container_name: 'skillu_ui'
-  #   image: 'excellalabs/skillustrator-ui'
-  #   build:
-  #     context: ./UI
-  #     dockerfile: Dockerfile.AppAndAngular2
-  #   volumes:
-  #     - C:/dev/Skills%20Illustrator/UI:/app
-  #   ports:
-  #     - "4200:4200"
-  #   links:
-  #     - api
-  #   depends_on:
-  #     - api
-  #   networks:
-  #     - aspnetcoreapp-network
+  ui:
+    container_name: 'skillu_ui'
+    image: 'excellalabs/skillustrator-ui'
+    build:
+      context: ./UI
+      dockerfile: Dockerfile.AppAndAngular2
+    volumes:
+      - C:/dev/Skills%20Illustrator/UI:/app
+    ports:
+      - "4200:4200"
+    links:
+      - api
+    depends_on:
+      - api
+    networks:
+      - aspnetcoreapp-network
 
   postgres:
     container_name: 'skillustrator-postgres'
