@@ -1,8 +1,60 @@
-<p>
-   <!--<input type="text" [ngFormControl] = "term" class="form-control" placeholder={{placeHolder}} >           -->
-   <!--Search: <input ng2-auto-complete [(ngModel)]="myData" [source]="mySource" />-->
-   <input ng2-auto-complete placeholder="enter text" 
-        [(ngModel)]="searchInput" 
-        [source]="arrayOfStrings"
-        tabindex="0">
-</p>
+<input ng2-auto-complete placeholder="search" 
+  [(ngModel)]="selectedItem" 
+  [source]="arrayOfStrings" 
+  (valueChanged)="searchBoxItemSelected($event)"
+  tabindex="0">
+<!--
+<div class="ac-input">
+  <input type="text" id="multipleInput" placeholder="Please input some letters" data-activates="multipleDropdown" data-beloworigin="true" autocomplete="off" class="">
+  <ul id="multipleDropdown" class="dropdown-content ac-dropdown" style="width: 800px; position: absolute; top: 45px; left: 219.469px; opacity: 1; display: none;"></ul>
+  <input type="hidden" class="validate" value="Abe,Ari">
+</div>-->
+
+<section class="col s12">
+  <div class="row">
+    <div class="col s3">
+        {{selectedItem}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s3">
+    </div>
+    <div class="col s2">
+      <label>Yrs Experience</label>
+    </div>
+    <div class="col s2">
+      <label>Skill Level</label>
+    </div>
+    <div class="col s2">
+      <label>Last Used</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s3">
+      <label>William Vaughn</label>
+    </div>
+    <div class="col s2">
+      <label>4</label>
+    </div>
+    <div class="col s2">
+      <label>Intermediate</label>
+    </div>
+    <div class="col s2">
+      <label>6-12 months</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s3">
+      <label>William Vaughn</label>
+    </div>
+    <div class="col s2">
+      <label>4</label>
+    </div>
+    <div class="col s2">
+      <label>Intermediate</label>
+    </div>
+    <div class="col s2">
+      <label>6-12 months</label>
+    </div>
+  </div>
+</section>

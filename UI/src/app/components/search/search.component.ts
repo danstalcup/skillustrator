@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
   
-  model1: any;
+  selectedItem: any;
   arrayOfStrings: string[] = ["this", "is", "array", "of", "text"];
 
   constructor() { }
@@ -15,4 +15,8 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-}
+  searchBoxItemSelected(event) {
+    
+  }
+
+} 
