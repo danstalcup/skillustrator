@@ -7,9 +7,10 @@ services:
     image: 'excellalabs/skillustrator-api'
     build:
       context: ./API
-      dockerfile: Dockerfile
-    volumes:
-      - ./API:/app
+      dockerfile: Dockerfile.Prod
+    # Don't want to map host for prod
+    # volumes:
+    #   - ./API:/app
     ports:
       - "8080:5000"
     entrypoint: ["sh", "./scripts/go.sh"] 
@@ -24,8 +25,8 @@ services:
     build:
       context: ./UI
       dockerfile: Dockerfile.AppAndAngular2
-    volumes:
-      - ./UI:/app
+    # volumes:
+    #   - ./UI:/app
     ports:
       - "80:4200"
     links:

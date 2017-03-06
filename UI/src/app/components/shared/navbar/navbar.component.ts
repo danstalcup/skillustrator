@@ -21,6 +21,8 @@ export class NavbarComponent implements OnInit {
     // if (this.isUserLoggedIn) {
     //   this.personService.getById(this.currentUserId).subscribe(user => this.currentUser = user);
     // }
+
+    this.isUserLoggedIn = true;
   }
 
 }
