@@ -7,6 +7,8 @@ It allows skill tagging which opens up many scenarios that it can support. For e
 * Tag skills with a project name, to indicate which skills are needed for what types of projects, or even clients. 
 * Tag skills with jr, mid, sr to indicate what skills are required at what seniorty level. 
 
+Please contribute! See our [kanban board](https://github.com/excellalabs/skillustrator/projects/1) for stories.
+
 ## How it works 
 
 Users log into their profile and for each skill they have, they rank their level of expertise, the amount of time they used the skill, and when the last time was they used the skill. 
