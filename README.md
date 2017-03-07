@@ -43,7 +43,7 @@ Skills can be added and tagged via the skills & tags management screens.
 * Widget for about.me
 * Personal resume -- clouds for different colors, skill length of experience is length of block, faded colors on the outside of the cloud.
 
-## Running the app
+# Running the app
 
 The entire app will spin up - UI (Angular 2), API (ASP.NET Core) and database (PostgreSQL) each in their own container. 
 
@@ -61,7 +61,7 @@ The entire app will spin up - UI (Angular 2), API (ASP.NET Core) and database (P
 
 The UI should be running on http://localhost:4200/person/999 now, and the API is accessible through http://localhost:4200/api/person/999 (test user seeded there).
 
-### Operations
+## Operations
 
 1. If you need to log into the container (i.e. run migrations or troubleshoot), use this command. Use `docker ps` to list running containers and see the name:
 
@@ -78,7 +78,7 @@ The UI should be running on http://localhost:4200/person/999 now, and the API is
 
 1. To see the console output within the container, run `docker logs <container_name>`
 
-### Add a database migration when model changes 
+## Add a database migration when model changes 
 
 1. Log into the app container (see instructions above). There is also a script available API/scpirts/appContainerLogin.sh that runs the below.
 
@@ -86,13 +86,13 @@ The UI should be running on http://localhost:4200/person/999 now, and the API is
 
 1. Run `dotnet ef database update`
 
-### Manage the database 
+## Manage the database 
 
-#### via pgAdmin 
+### via pgAdmin 
 
 Download and point it to localhost. Make sure the port matches what's being exposed from the Postgres container in the docker-compose file. 
 
-#### via psql CLI
+### via psql CLI
 
 1. Log into the postgres container (see instructions above)
 
@@ -104,7 +104,7 @@ Download and point it to localhost. Make sure the port matches what's being expo
 
 **NOTE:** you can also you a GUI tool to manage the database like **pgAdmin**
 
-### NOTE: To run this Angular 2/Angular-CLI UI outside of Docker:
+## NOTE: To run this Angular 2/Angular-CLI UI outside of Docker:
 
 First, you will need Node 4 or higher, as well as NPM 3 or higher (download here https://nodejs.org/en/download/).
 
