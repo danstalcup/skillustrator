@@ -1,6 +1,6 @@
 # Skillustrator
 
-Welcome to Skillustrator, which allows organizations to the track skills of their people, get deeper insight into their organization's overall abilities and what kind of tasks and projects can be taken on, and where gaps are. 
+Welcome to Skillustrator, which allows organizations to the track skills of their people, get deeper insight into their organization's overall abilities, what kind of tasks and projects can be taken on, and where gaps are. 
 
 It allows skill tagging which opens up many scenarios that it can support. For example:
 * Tag skills into a general category, such as Angular and Javascript into the tag *Front-end*. This way, you can find all the skills your company has for front-end, or *Needed Front-end* for all the skills your company needs for front-end projects.
