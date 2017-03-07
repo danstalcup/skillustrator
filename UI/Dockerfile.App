@@ -10,6 +10,7 @@ RUN apk update && \
 COPY . /app/
 WORKDIR /app
 
-RUN npm install
+# node_modules has to exist locally, as it gets copied into the container, then the host mapped over it so npm install currenty has to be run locally first
+# RUN npm install
 
 CMD ["npm", "start"]

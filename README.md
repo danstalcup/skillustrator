@@ -1,6 +1,51 @@
 # Skillustrator
 
-### Run the application with an Angular 2, ASP.NET Core API through data access layer container, and a database container
+Welcome to Skillustrator, which allows organizations to the track skills of their people, get deeper insight into their organization's overall abilities and what kind of tasks and projects can be taken on, and where gaps are. 
+
+It allows skill tagging which opens up many scenarios that it can support. For example:
+* Tag skills into a general category, such as Angular and Javascript into the tag *Front-end*. This way, you can find all the skills your company has for front-end, or *Needed Front-end* for all the skills your company needs for front-end projects.
+* Tag skills with a project name, to indicate which skills are needed for what types of projects, or even clients. 
+* Tag skills with jr, mid, sr to indicate what skills are required at what seniorty level. 
+
+## How it works 
+
+Users log into their profile and for each skill they have, they rank their level of expertise, the amount of time they used the skill, and when the last time was they used the skill. 
+
+Skill(s) can be searched for, bringing back who has what skill or combination of skills, what skill level they have, and how current they are.
+
+Skills can be added and tagged via the skills & tags management screens.
+
+## Base features
+
+* Allow people within a company (or potentially even publicly) to list their skillsets in a quick and easy way. It provides a public skills profile very simple for users to complete.
+* Surface visibility of skillsets when you need a certain skill, or combination of skills, for something
+* Get an overall idea of skillsets across a company. Visibility into cross-pollination efforts, etc.
+* Find Users with a list of Skills (i.e. build a team)
+* Build your next Team
+* Determine how current you are with your skills 
+
+## Features under consideration
+
+* Visualizing Skills
+    * Individual skillsets as a set of bubbles or boxes along the following lines:
+    * Expertise/proficiency level = color
+    * Length of time the skill's been used = size of the box/bubble
+    * Last time the skill was used = opacity (faded if it's been a while).
+* Pull users from anywhere (LDAP, OAuth, etc.)
+* API to interface (think LinkedIn widget, StackCareers integration, etc.)
+* Suggest skills based on things other people are adding
+* Find users with similar skills / like-minded users
+* Compare your organization to others
+* Add LinkedIn and StackCareer Profiles to your Skillustrator Profile (cannibalizes their limited skill lists)
+* "What type of organization are you?" -- see what range of skills you have, where you're weak, how you compare to other companies
+* Skillsume -- nice printed version of your skill resume (version for color, version for black & white) -- skills by category or tag?
+* Facebook integration -- post your skills to your profile or page, find friends with similar skillsets
+* Widget for about.me
+* Personal resume -- clouds for different colors, skill length of experience is length of block, faded colors on the outside of the cloud.
+
+## Running the app
+
+The entire app will spin up - UI (Angular 2), API (ASP.NET Core) and database (PostgreSQL) each in their own container. 
 
 **NOTE for Windows users**: you must have the new bash installed (comes with Windows 10 Anniversary Update), and you should use this bash. 
 
@@ -12,7 +57,11 @@
 
     `docker-compose up -d`
 
-The UI should be running on http://localhost:4200/person/999 now, and the API is accessible through http://localhost:4200/api/person/999.
+**If you get an error that it can't run go.sh,* use git bash's (or install it in any bash) dos2unix go.sh to convert the Windows line endings to Unix for the container.
+
+The UI should be running on http://localhost:4200/person/999 now, and the API is accessible through http://localhost:4200/api/person/999 (test user seeded there).
+
+### Operations
 
 1. If you need to log into the container (i.e. run migrations or troubleshoot), use this command. Use `docker ps` to list running containers and see the name:
 
@@ -29,31 +78,21 @@ The UI should be running on http://localhost:4200/person/999 now, and the API is
 
 1. To see the console output within the container, run `docker logs <container_name>`
 
-### NOTE: To run a web container only
-
-1. If you haven't built the image, run:
-
-    `docker build -t <tag>:<image name> . `
-
-1. Then run this to create the container: 
-
-    `docker run -dt -p 5000:5000 -v $(pwd):/app -t msexcella:aspnetcore-dev-env`
-
 ### Add a database migration when model changes 
 
-1. Log into the app container (see instructions above)
+1. Log into the app container (see instructions above). There is also a script available API/scpirts/appContainerLogin.sh that runs the below.
 
 1. Run `dotnet ef migrations add <name>`
 
 1. Run `dotnet ef database update`
 
-1. Add an item to the database. You can either use the following curl command, or your favorite tool like Postman:
+### Manage the database 
 
-    `
-    curl -H "Content-Type: application/json" -X POST -d '{"name":"Posted"}' http://localhost:5000/api/articles
-    `
+#### via pgAdmin 
 
-### Manage the database via psql CLI
+Download and point it to localhost. Make sure the port matches what's being exposed from the Postgres container in the docker-compose file. 
+
+#### via psql CLI
 
 1. Log into the postgres container (see instructions above)
 
@@ -64,12 +103,6 @@ The UI should be running on http://localhost:4200/person/999 now, and the API is
 1. To exit type, `\q`
 
 **NOTE:** you can also you a GUI tool to manage the database like **pgAdmin**
-
-## UI
-
-The above `docker-compose` command will also run a lightweight container for the UI.
-
-Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ### NOTE: To run this Angular 2/Angular-CLI UI outside of Docker:
 

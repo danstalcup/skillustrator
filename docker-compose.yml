@@ -10,7 +10,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./API:/app
-      #- C:/dev/Skills%20Illustrator/API:/app
     ports:
       - "5000:5000"
     entrypoint: ["sh", "./scripts/go.sh"] 
@@ -26,8 +25,8 @@ services:
       context: ./UI
       dockerfile: Dockerfile.AppAndAngular2
     volumes:
-      #- C:/dev/Skills%20Illustrator/UI:/app
       - ./UI:/app
+      - /app/node_modules # map container's node_modules directory back into the host's source, otherwise npm install would have to be run locally
     ports:
       - "4200:4200"
     links:
