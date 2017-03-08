@@ -51,7 +51,9 @@ Skills can be added and tagged via the skills & tags management screens.
 
 The entire app will spin up - UI (Angular 2), API (ASP.NET Core) and database (PostgreSQL) each in their own container. 
 
-**NOTE for Windows users**: you must have the new bash installed (comes with Windows 10 Anniversary Update), and you should use this bash. 
+**NOTE for Windows users**: 
+    a) you must have the new bash installed (comes with Windows 10 Anniversary Update), and set up a C share in Docker settings. 
+    b) **If you get an error that it can't run go.sh,* use git bash's (or install it in any bash) dos2unix go.sh to convert the Windows line endings to Unix for the container.
 
 1. If you haven't built yet, run: 
 
@@ -61,9 +63,8 @@ The entire app will spin up - UI (Angular 2), API (ASP.NET Core) and database (P
 
     `docker-compose up -d`
 
-**If you get an error that it can't run go.sh,* use git bash's (or install it in any bash) dos2unix go.sh to convert the Windows line endings to Unix for the container.
-
-The UI should be running on http://localhost:4200/person/999 now, and the API is accessible through http://localhost:4200/api/person/999 (test user seeded there).
+The UI should be running 
+(http://localhost:4200/person/999, test user seeded there).
 
 ## Operations
 
