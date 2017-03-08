@@ -4,7 +4,7 @@ services:
 
   api:
     container_name: 'skillu_api_dev'
-    image: 'excellalabs/skillustrator-api'
+    image: 'excellalabs/skillustrator-api-dev'
     build:
       context: ./API
       dockerfile: Dockerfile
@@ -20,7 +20,7 @@ services:
 
   ui:
     container_name: 'skillu_ui_dev'
-    image: 'excellalabs/skillustrator-ui'
+    image: 'excellalabs/skillustrator-ui-dev'
     build:
       context: ./UI
       dockerfile: Dockerfile.AppAndAngular2
