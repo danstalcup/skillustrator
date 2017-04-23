@@ -1,6 +1,6 @@
 # Describes how to build a Docker image. Each instruction creates a new layer in the image. 
 
-FROM microsoft/dotnet:1.1.0-sdk-projectjson
+FROM microsoft/dotnet:1.1.1-sdk
 # This is good for deployed apps as it will be minimal, and no SDK 
 #FROM microsoft/dotnet:1.0.1-core 
 
