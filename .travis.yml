@@ -19,17 +19,19 @@ after_success:
   - './awscli-bundle/install -b ~/bin/aws'
   - 'export PATH=~/bin:$PATH'
 
-deploy:
-  ### CI environment variables 
-  # AWS_ACCESS_KEY
-  # AWS_SECRET_ACCESS_KEY
-  # AWS_ACCOUNT_ID
-  # AWS_DEFAULT_REGION  
-  # CLUSTER_NAME
-  ### Per environment
-  # SERVICE
-  # IMAGE_NAME
-
   - chmod +x deploy-ecs/travisCI/push-to-ecr-ecs.sh
   - chmod +x deploy-ecs/ecs-deploy.sh
   - deploy-ecs/push-to-ecr-ecs.sh.sh
+
+
+  
+  
+### CI environment variables ###
+# AWS_ACCESS_KEY
+# AWS_SECRET_ACCESS_KEY
+# AWS_ACCOUNT_ID
+# AWS_DEFAULT_REGION  
+# CLUSTER_NAME
+### Per environment
+# SERVICE
+# IMAGE_NAME
