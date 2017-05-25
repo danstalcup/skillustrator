@@ -84,10 +84,30 @@ namespace Skillustrator.Api.Infrastructure
             skills.Add (new Skill { Name = "Django" });
             skills.Add (new Skill { Name = "Flask" });
             skills.Add (new Skill { Name = "Ruby" });
-            skills.Add (new Skill { Name = "Rails" });
-            skills.Add (new Skill { Name = "Javascript" });
+            skills.Add (new Skill { Name = "Rails" });            
 
             db.Skills.AddRange(skills);
+
+            var skillLevels = new List<SkillLevel>();
+            skillLevels.Add (new SkillLevel { Description = "Junior", Code = SkillLevel.Junior });
+            skillLevels.Add (new SkillLevel { Description = "Junior-Mid", Code = SkillLevel.JuniorMid });
+            skillLevels.Add (new SkillLevel { Description = "Mid", Code = SkillLevel.Mid });
+            skillLevels.Add (new SkillLevel { Description = "Senior-Mid", Code = SkillLevel.SeniorMid });
+            skillLevels.Add (new SkillLevel { Description = "Senior", Code = SkillLevel.Senior });
+            skillLevels.Add (new SkillLevel { Description = "Expert", Code = SkillLevel.Expert });
+
+            db.SkillLevels.AddRange(skillLevels);
+
+            var timePeriods = new List<TimePeriod>();
+            timePeriods.Add (new TimePeriod { Description = "Less than One Month", Code = TimePeriod.LessThanOneMonth });
+            timePeriods.Add (new TimePeriod { Description = "One to Six Months", Code = TimePeriod.OneToSixMonths });
+            timePeriods.Add (new TimePeriod { Description = "Six to Twelve Months", Code = TimePeriod.SixToTwelveMonths });
+            timePeriods.Add (new TimePeriod { Description = "One to Two Years", Code = TimePeriod.OneToTwoYears });
+            timePeriods.Add (new TimePeriod { Description = "Two to Five Years", Code = TimePeriod.TwoToFiveYears });
+            timePeriods.Add (new TimePeriod { Description = "Five to Ten Years", Code = TimePeriod.FiveToTenYears });
+            timePeriods.Add (new TimePeriod { Description = "More than Ten Years", Code = TimePeriod.MoreThanTenYears });
+            
+            db.TimePeriods.AddRange(timePeriods);
 
             await db.SaveChangesAsync();
         }
