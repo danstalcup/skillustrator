@@ -85,7 +85,10 @@ namespace Skillustrator.Api.Infrastructure
             skills.Add (new Skill { Name = "Flask" });
             skills.Add (new Skill { Name = "Ruby" });
             skills.Add (new Skill { Name = "Rails" });
+<<<<<<< HEAD
             skills.Add (new Skill { Name = "Javascript" });
+=======
+>>>>>>> origin/dan_test_1
 
             db.Skills.AddRange(skills);
 
