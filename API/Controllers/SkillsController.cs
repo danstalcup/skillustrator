@@ -12,13 +12,15 @@ namespace Skillustrator.Api.Controllers
     [Route("/api/[controller]")]
     public class SkillsController : Controller
     {
+        private readonly IRepository<Tag> _tagRepository;
         private readonly ISkillRepository _skillRepository;
         private readonly ILogger<SkillsController> _logger; 
 
-        public SkillsController(ISkillRepository skillRepository, ILogger<SkillsController> logger)
+        public SkillsController(ISkillRepository skillRepository, ILogger<SkillsController> logger, IRepository<Tag> tagRepository)
         {
             _skillRepository = skillRepository;
             _logger = logger;
+            _tagRepository = tagRepository;
         }
 
         [HttpGet]
@@ -85,5 +87,47 @@ namespace Skillustrator.Api.Controllers
 
             return new NoContentResult();
         }
+
+       [HttpPost("{skillId:int}/addtag")]
+        public async Task<IActionResult> AddTag(int git , [FromBody]SkillTagViewModel skillTagViewModel)
+        {
+            if (skillTagViewModel == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var skill = await _skillRepository.GetSkillWithTags(skillTagViewModel.SkillId);
+
+            if (skill == null) 
+            {
+                return NotFound();
+            }
+
+            var tagToAdd = await _tagRepository.GetSingleAsync(skillTagViewModel.TagId);
+            
+            var skillTag = new SkillTag 
+            { 
+                Skill = skill,
+                Tag = tagToAdd
+            };
+
+            if (skill.Tags == null) 
+            {
+                skill.Tags = new Collection<SkillTag>();
+            }
+            skill.Tags.Add(skillTag);
+
+            await _skillRepository.SaveChangesAsync();
+
+            var skillViewModel = SkillViewModelFactory.Build(skill);
+
+            return CreatedAtAction(nameof(Get), new { id = skillViewModel.Name }, skillViewModel);
+        }
+
     }
 }
